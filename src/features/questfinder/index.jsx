@@ -1,16 +1,20 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { Container } from 'reactstrap';
+import { Container, Card, CardHeader, CardBody, CardTitle, ListGroup, ListGroupItem, ListGroupItemHeading, Row, Col } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import classes from '../../data/classes';
 import rewardTypes from '../../data/reward-types';
 import locations from '../../data/locations';
+import cities from '../../data/cities';
 
 const classArr = Object.values(classes);
 const rewardArr = Object.values(rewardTypes);
 const locationArr = Object.values(locations);
+const cityArr = Object.values(cities);
+
+const citiesForLocations = _.reduce(locationArr, (m, location) => ({ ...m, [location.name]: _.filter(cityArr, c => c.locations.includes(location)) }), {}); 
 
 const containerStyle = {
   marginTop: '10px',
@@ -40,44 +44,58 @@ const Questfinder = () => {
     <Container style={containerStyle}>
       <h3>Quest Location Finder</h3>
       <p>Select a class, then if desired select a loot type. The questfinder will suggest the optimal locations for your questing.</p>
-      <Typeahead
-        id="class-typeahead"
-        labelKey="name"
-        multiple
-        options={classArr}
-        placeholder="Choose one or more classes..."
-        onChange={setSelectedClass}
-      />
-      <ul>
-        {(selectedClass && selectedClass[0]) && _.map(selectedClass[0].questBonus, q => (<li key={q.name}>{q.name}</li>))}
-      </ul>
-      <Typeahead
-        id="reward-typeahead"
-        labelKey="name"
-        options={rewardArr}
-        multiple
-        placeholder="Choose some quest objectives..."
-        onChange={setSelectedRewards}
-      />
+      <Row>
+        <Col sm="6">
+          <Typeahead
+            id="class-typeahead"
+            labelKey="name"
+            multiple
+            options={classArr}
+            placeholder="Choose one or more classes..."
+            onChange={setSelectedClass}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col sm="6">
+          <Typeahead
+            id="reward-typeahead"
+            labelKey="name"
+            options={rewardArr}
+            multiple
+            placeholder="Choose some quest objectives..."
+            onChange={setSelectedRewards}
+          />
+        </Col>
+      </Row>
       <hr />
       <div>
-        <h3>Results</h3>
         {(!(queryResults && queryResults[0])) && 'No Results'}
         {(queryResults && queryResults[0]) 
           && queryResults.map(r => (
             <div>
-              <h4>{r.name}</h4>
-              <ul>
+              <h3>{r.name}</h3>
+              <Row>
                 {r.rewardResults.map(reward => (
-                  <Fragment>
-                    <li>{reward.name}</li>
-                    <ul>
-                      {reward.locationMatches.length === 0 && (<li>No Match Found!</li>)}
-                      {reward.locationMatches.map(m => (<li>{m.name}</li>))}
-                    </ul>
-                  </Fragment>
+                  <Col md="4">
+                    <Card>
+                      <CardHeader tag="h4">{reward.name}</CardHeader>
+                      <CardBody>
+                        {reward.locationMatches.length === 0 && (<CardTitle>No Match Found!</CardTitle>)}
+                        {reward.locationMatches.map(m => (
+                          <Fragment>
+                            <ListGroup flush>
+                              <ListGroupItemHeading>Quest Site - {m.name}</ListGroupItemHeading>
+                              {citiesForLocations[m.name].map(city => (<ListGroupItem>{city.name}</ListGroupItem>))}
+                            </ListGroup>
+                          </Fragment>
+                        ))}
+                      </CardBody>
+                    </Card>
+                  </Col>
                 ))}
-              </ul>
+              </Row>
+              <hr />
             </div>
           ))}
       </div>
