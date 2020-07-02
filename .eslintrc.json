@@ -1,0 +1,28 @@
+{
+  "extends": ["airbnb"],
+  "rules": {
+    "no-unused-vars": [
+      "warn",
+      { "vars": "all", "args": "none", "ignoreRestSiblings": false }
+    ],
+    "max-len": [
+      "error",
+      { "code": 160 }
+    ],
+    "object-curly-newline": ["error", {
+      "ObjectPattern": { "consistent": true, "minProperties": 8 },
+      "ObjectExpression": { "consistent": true, "minProperties": 8 }
+    }],
+    "no-nested-ternary": 0,
+    "no-trailing-spaces": 0,
+    "linebreak-style": 0,
+    "react/jsx-one-expression-per-line": [false]
+  },
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "globals": {
+    "API_URL": "readonly"
+  }
+}
