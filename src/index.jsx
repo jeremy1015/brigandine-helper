@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+import { BrowserRouter } from 'react-router-dom';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import store, { history } from './util/store';
 import NavigationBar from './features/navigation/index';
@@ -10,12 +10,12 @@ import './img/favicon.ico';
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
+    <BrowserRouter basename="/brigandine-helper/" history={history}>
       <div>
         <NavigationBar />
         <Routes />
       </div>
-    </ConnectedRouter>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('app'),
 );
