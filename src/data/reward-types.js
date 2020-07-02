@@ -1,0 +1,15 @@
+export default {
+  accesory: { name: 'Accessory' },
+  chalice: { name: 'Chalice' },
+  hat: { name: 'Hat' },
+  helmet: { name: 'Helmet' },
+  mail: { name: 'Mail' },
+  monsterAccessory: { name: 'Monster Accessory' },
+  monsterHat: { name: 'Monster Hat' },
+  monsterRobe: { name: 'Monster Robe' },
+  pearl: { name: 'Pearl' },
+  robe: { name: 'Robe' },
+  spear: { name: 'Spear' },
+  staff: { name: 'Staff' },
+  sword: { name: 'Sword' },
+};
