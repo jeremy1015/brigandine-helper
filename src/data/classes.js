@@ -8,7 +8,7 @@ export default {
       lt.highlands,
       lt.sanctuary,
       lt.shrine,
-      lt.fortPastous
+      lt.fortPastous,
     ],
   },
   swordsman: {
@@ -18,14 +18,14 @@ export default {
       lt.jungle,
       lt.woodland,
       lt.isleOfTrembo,
-      lt.ivoryDragonSpring
+      lt.ivoryDragonSpring,
     ],
   },
   berserker: {
     name: 'Berserker',
     questBonus: [
       lt.plains,
-      lt.highlands
+      lt.highlands,
     ],
   },
   viking: {
@@ -36,7 +36,7 @@ export default {
       lt.falls,
       lt.strait,
       lt.shrine,
-      lt.bay
+      lt.bay,
     ],
   },
   ranger: {
@@ -65,7 +65,7 @@ export default {
       lt.isleOfMartha,
       lt.isleOfLennu,
       lt.manaSpring,
-      lt.hiddenTreasury
+      lt.hiddenTreasury,
     ],
   },
   grappler: {
@@ -74,7 +74,7 @@ export default {
       lt.peaks,
       lt.mount,
       lt.hill,
-      lt.alps
+      lt.alps,
     ],
   },
   sorcerer: {
@@ -85,7 +85,7 @@ export default {
       lt.wasteland,
       lt.plains,
       lt.highlands,
-      lt.fortPastous
+      lt.fortPastous,
     ],
   },
   bishop: {
@@ -95,7 +95,7 @@ export default {
       lt.highlands,
       lt.sanctuary,
       lt.shrine,
-      lt.hiddenTreasury
+      lt.hiddenTreasury,
     ],
   },
   templeKnight: {
@@ -104,7 +104,7 @@ export default {
       lt.lakeside,
       lt.valley,
       lt.falls,
-      lt.ivoryDragonSpring
+      lt.ivoryDragonSpring,
     ],
   },
   archer: {
@@ -114,7 +114,7 @@ export default {
       lt.jungle,
       lt.woodland,
       lt.isleOfTrembo,
-      lt.ivoryDragonSpring
+      lt.ivoryDragonSpring,
     ],
   },
   minstrel: {
@@ -124,7 +124,7 @@ export default {
       lt.jungle,
       lt.woodland,
       lt.isleOfTrembo,
-      lt.ivoryDragonSpring
+      lt.ivoryDragonSpring,
     ],
   },
   rogue: {
@@ -137,7 +137,7 @@ export default {
       lt.mount,
       lt.hill,
       lt.alps,
-      lt.fortPastous
+      lt.fortPastous,
     ],
   },
   sorcereress: {
@@ -145,7 +145,7 @@ export default {
     questBonus: [
       lt.plains,
       lt.highlands,
-      lt.fortPastous
+      lt.fortPastous,
     ],
   },
   healer: {
@@ -155,7 +155,7 @@ export default {
       lt.highlands,
       lt.sanctuary,
       lt.shrine,
-      lt.hiddenTreasury
+      lt.hiddenTreasury,
     ],
   },
   heroOfOld: {
@@ -165,11 +165,11 @@ export default {
       lt.mount,
       lt.hill,
       lt.alps,
-      lr.sanctuary,
+      lt.sanctuary,
       lt.shrine,
       lt.isleOfMartha,
       lt.isleOfLennu,
-      lt.manaSpring
+      lt.manaSpring,
     ],
   },
 };
