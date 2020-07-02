@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Container } from 'reactstrap';
@@ -18,23 +18,24 @@ const containerStyle = {
 
 const Questfinder = () => {
   const [selectedClass, setSelectedClass] = useState([]);
-  const [selectedReward, setSelectedReward] = useState([]);
-  const [selectedLocations, setSelectedLocations] = useState([]);
+  const [selectedRewards, setSelectedRewards] = useState([]);
+  const [queryResults, setQueryResults] = useState([]);
 
   useEffect(() => {
-    if (!(
-      selectedClass 
-      && selectedClass[0] 
-      && selectedReward 
-      && selectedReward[0])) {
-      setSelectedLocations([]);
+    if (!(selectedClass && selectedClass[0] && selectedRewards && selectedRewards[0])) {
+      setQueryResults([]);
       return;
     }
-    const locs = (_.filter(locationArr, 
-      l => selectedClass[0].questBonus.includes(l.type) && l.rewards.includes(selectedReward[0])));
-    console.log(locs);
-    setSelectedLocations(locs);
-  }, [selectedClass, selectedReward]);
+    const results = selectedClass.map(c => ({
+      name: c.name,
+      rewardResults: selectedRewards.map(r => ({
+        name: r.name,
+        locationMatches: _.filter(locationArr, l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
+      })),
+    }));
+    console.log(results);
+    setQueryResults(results);
+  }, [selectedClass, selectedRewards]);
   return (
     <Container style={containerStyle}>
       <h3>Quest Location Finder</h3>
@@ -56,13 +57,29 @@ const Questfinder = () => {
         options={rewardArr}
         multiple
         placeholder="Choose some quest objectives..."
-        onChange={setSelectedReward}
+        onChange={setSelectedRewards}
       />
       <hr />
       <div>
         <h3>Results</h3>
-        {(!(selectedLocations && selectedLocations[0])) && 'No Results'}
-        {(selectedLocations && selectedLocations[0]) && selectedLocations[0].name}
+        {(!(queryResults && queryResults[0])) && 'No Results'}
+        {(queryResults && queryResults[0]) 
+          && queryResults.map(r => (
+            <div>
+              <h4>{r.name}</h4>
+              <ul>
+                {r.rewardResults.map(reward => (
+                  <Fragment>
+                    <li>{reward.name}</li>
+                    <ul>
+                      {reward.locationMatches.length === 0 && (<li>No Match Found!</li>)}
+                      {reward.locationMatches.map(m => (<li>{m.name}</li>))}
+                    </ul>
+                  </Fragment>
+                ))}
+              </ul>
+            </div>
+          ))}
       </div>
     </Container>
   );
