@@ -15,7 +15,7 @@ export default {
   ariaGreatPlains: {
     name: 'Aria Great Plains',
     type: lt.plains,
-    rewards: [rt.sword, rt.helmet, rt.mail, rt.accesory, rt.chalice],
+    rewards: [rt.sword, rt.helmet, rt.mail, rt.accessory, rt.chalice],
   },
   chimJungle: {
     name: 'Chim Jungle',
@@ -50,7 +50,7 @@ export default {
   hillsOfMadrow: {
     name: 'Hills of Madrow',
     type: lt.hill,
-    rewards: [rt.dagger, rt.accesory, rt.bracer, rt.leather, rt.consumable],
+    rewards: [rt.dagger, rt.accessory, rt.bracer, rt.leather, rt.consumable],
   },
   isleOfLennu: {
     name: 'Isle Of Lennu',

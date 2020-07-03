@@ -1,60 +1,76 @@
 import locs from './locations';
 
 export default {
-  warren: {
-    name: 'Warren',
-    locations: [],
+  alternia: {
+    name: 'Alternia',
+    locations: [locs.ariaGreatPlains],
   },
-  belfaram: {
-    name: 'Belfaram',
-    locations: [],
-  },
-  dreug: {
-    name: 'Dreug',
-    locations: [],
-  },
-  greensglade: {
-    name: 'Greensglade',
-    locations: [],
-  },
-  zagust: {
-    name: 'Zagust',
-    locations: [],
-  },
-  garwellin: {
-    name: 'Garwellin',
-    locations: [],
-  },
-  lorentz: {
-    name: 'Lorentz',
-    locations: [],
-  },
-  marmelmo: {
-    name: 'Marmelmo',
-    locations: [],
-  },
-  lanster: {
-    name: 'Lanster',
+  angela: {
+    name: 'Angela',
     locations: [],
   },
   angrein: {
     name: 'Angrein',
     locations: [],
   },
-  harmonia: {
-    name: 'Harmonia',
+  anthelnia: {
+    name: 'Anthelnia',
+    locations: [],
+  },
+  balutza: {
+    name: 'Balutza',
+    locations: [],
+  },
+  belfaram: {
+    name: 'Belfaram',
+    locations: [],
+  },
+  cornwern: {
+    name: 'Cornwern',
+    locations: [],
+  },
+  dreug: {
+    name: 'Dreug',
+    locations: [],
+  },
+  drowarn: {
+    name: 'Drowarn',
+    locations: [locs.ariaGreatPlains],
+  },
+  ellandol: {
+    name: 'Ellandol',
     locations: [],
   },
   fupai: {
     name: 'Fupai',
     locations: [],
   },
-  tian: {
-    name: 'Tian',
+  galest: {
+    name: 'Galest',
     locations: [],
   },
-  mezza: {
-    name: 'Mezza',
+  garwellin: {
+    name: 'Garwellin',
+    locations: [],
+  },
+  gharghar: {
+    name: 'Gharghar',
+    locations: [],
+  },
+  glan: {
+    name: 'Glan',
+    locations: [],
+  },
+  greensglade: {
+    name: 'Greensglade',
+    locations: [],
+  },
+  harmonia: {
+    name: 'Harmonia',
+    locations: [],
+  },
+  ilvanny: {
+    name: 'Ilvanny',
     locations: [],
   },
   katchana: {
@@ -65,104 +81,88 @@ export default {
     name: 'Koaloopa',
     locations: [],
   },
-  minz: {
-    name: 'Minz',
+  lanster: {
+    name: 'Lanster',
     locations: [],
   },
-  milveen: {
-    name: 'Milveen',
+  lorentz: {
+    name: 'Lorentz',
     locations: [],
   },
-  ilvanny: {
-    name: 'Ilvanny',
-    locations: [],
-  },
-  saintGladia: {
-    name: 'Saint Gladia',
-    locations: [],
-  },
-  balutza: {
-    name: 'Balutza',
-    locations: [],
-  },
-  portside: {
-    name: 'Portside',
-    locations: [],
-  },
-  glan: {
-    name: 'Glan',
-    locations: [],
-  },
-  alternia: {
-    name: 'Alternia',
-    locations: [locs.ariaGreatPlains],
-  },
-  sedestoria: {
-    name: 'Sedestoria',
-    locations: [],
-  },
-  naridge: {
-    name: 'Naridge',
-    locations: [],
-  },
-  zai: {
-    name: 'Zai',
-    locations: [],
-  },
-  ragrunt: {
-    name: 'Ragrunt',
-    locations: [],
-  },
-  galest: {
-    name: 'Galest',
-    locations: [],
-  },
-  saladiel: {
-    name: 'Saladiel',
-    locations: [],
-  },
-  norbass: {
-    name: 'Norbass',
-    locations: [],
-  },
-  anthelnia: {
-    name: 'Anthelnia',
-    locations: [],
-  },
-  vestillis: {
-    name: 'Vestillis',
-    locations: [],
-  },
-  cornwern: {
-    name: 'Cornwern',
-    locations: [],
-  },
-  ellandol: {
-    name: 'Ellandol',
-    locations: [],
-  },
-  gharghar: {
-    name: 'Gharghar',
+  marmelmo: {
+    name: 'Marmelmo',
     locations: [],
   },
   meraniel: {
     name: 'Meraniel',
     locations: [],
   },
+  mezza: {
+    name: 'Mezza',
+    locations: [],
+  },
+  milveen: {
+    name: 'Milveen',
+    locations: [],
+  },
+  minz: {
+    name: 'Minz',
+    locations: [],
+  },
+  naridge: {
+    name: 'Naridge',
+    locations: [],
+  },
+  norbass: {
+    name: 'Norbass',
+    locations: [],
+  },
   orsol: {
     name: 'Orsol',
     locations: [],
   },
-  angela: {
-    name: 'Angela',
+  portside: {
+    name: 'Portside',
+    locations: [],
+  },
+  ragrunt: {
+    name: 'Ragrunt',
+    locations: [],
+  },
+  saintGladia: {
+    name: 'Saint Gladia',
+    locations: [],
+  },
+  saladiel: {
+    name: 'Saladiel',
+    locations: [],
+  },
+  sedestoria: {
+    name: 'Sedestoria',
     locations: [],
   },
   shumenly: {
     name: 'Shumenly',
     locations: [],
   },
-  drowarn: {
-    name: 'Drowarn',
-    locations: [locs.ariaGreatPlains],
+  tian: {
+    name: 'Tian',
+    locations: [],
+  },
+  vestillis: {
+    name: 'Vestillis',
+    locations: [],
+  },
+  warren: {
+    name: 'Warren',
+    locations: [],
+  },
+  zagust: {
+    name: 'Zagust',
+    locations: [],
+  },
+  zai: {
+    name: 'Zai',
+    locations: [],
   },
 };
