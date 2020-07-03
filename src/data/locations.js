@@ -174,7 +174,7 @@ export default {
   ruinsOfNarm: {
     name: 'Ruins of Narm',
     type: lt.ruins,
-    rewards: [rt.instrument, rt.robe, rt.hat, rt.robe, rt.consumable],
+    rewards: [rt.instrument, rt.accessory, rt.hat, rt.robe, rt.consumable],
 
   },
   ruinsOfShlay: {
