@@ -145,7 +145,7 @@ export default {
     locations: [
       locs.woodlandsOfLem,
       locs.shamlahFalls,
-      locs.hiddenTreasury
+      locs.hiddenTreasury,
     ],
   },
   koaloopa: {
