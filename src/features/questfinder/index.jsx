@@ -35,10 +35,8 @@ const Questfinder = () => {
   };
 
   useEffect(() => {
-    let results;
-    if (!(selectedClass && selectedClass[0] && selectedRewards && selectedRewards[0])) {
-      results = [];
-    }
+    let results = [];
+
     if (!(selectedClass && selectedClass[0]) && (selectedRewards && selectedRewards[0])) {
       results = classArr.map(c => ({
         key: c.name,
