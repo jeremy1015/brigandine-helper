@@ -21,17 +21,18 @@ const containerStyle = {
 };
 
 const Questfinder = () => {
-  const locsByCity = cArray => _.reduce(locationArr, (m, location) => ({ ...m, [location.name]: _.filter(cArray, c => c.locations.includes(location)) }), {});
+  const locsByCity = cArray => locationArr.reduce((m, location) => ({ ...m, [location.name]: cArray.filter(c => c.locations.includes(location)) }), {});
   const [selectedClass, setSelectedClass] = useState([]);
   const [selectedRewards, setSelectedRewards] = useState([]);
   const [selectedCities, setSelectedCities] = useState([...cityArr]);
   const [availableCities, setAvailableCities] = useState(locsByCity(cityArr));
   const [queryResults, setQueryResults] = useState([]);
 
-  const cityToggle = (c) => {
+  const cityToggle = (event, c) => {
     const newCities = selectedCities.includes(c) ? _.without(selectedCities, c) : [...selectedCities, c];
     setSelectedCities(newCities);
     setAvailableCities(locsByCity(newCities));
+    event.preventDefault();
   };
 
   useEffect(() => {
@@ -87,7 +88,13 @@ const Questfinder = () => {
                   <ListGroupItemHeading>{f.name}</ListGroupItemHeading>
                 </ListGroupItem>
                 {f.starterCities.map(c => (
-                  <ListGroupItem key={c.name} tag="a" href="#" onClick={() => cityToggle(c)} color={selectedCities.includes(c) ? 'success' : 'secondary'}>
+                  <ListGroupItem
+                    key={c.name}
+                    tag="a"
+                    href="#"
+                    onClick={event => cityToggle(event, c)}
+                    color={selectedCities.includes(c) ? 'success' : 'secondary'}
+                  >
                     {c.name}
                   </ListGroupItem>
                 ))}
