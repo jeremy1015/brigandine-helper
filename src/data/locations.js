@@ -4,7 +4,7 @@ import lt from './location-types';
 export default {
   alzusStrait: {
     name: 'Alzus Strait',
-    type: lt.strait,
+    type: lt.saltwater,
     rewards: [rt.spear, rt.monsterAccessory, rt.monsterHat, rt.monsterRobe, rt.chalice],
   },
   aranForest: {
@@ -19,7 +19,7 @@ export default {
   },
   chimJungle: {
     name: 'Chim Jungle',
-    type: lt.jungle,
+    type: lt.forest,
     rewards: [rt.longsword, rt.leather, rt.dagger, rt.monsterBracer, rt.chalice],
   },
   enduraWastelands: {
@@ -34,22 +34,22 @@ export default {
   },
   giranAlps: {
     name: 'Giran Alps',
-    type: lt.alps,
+    type: lt.mountain,
     rewards: [rt.rod, rt.monsterBracer, rt.claws, rt.robe, rt.Crystal],
   },
   highlandSnowfield: {
     name: 'Highland Snowfield',
-    type: lt.highlands,
+    type: lt.plains,
     rewards: [rt.teeth, rt.monsterBracer, rt.monsterLeather, rt.monsterAccessory, rt.consumable],
   },
   hillsOfCural: {
     name: 'Hills of Cural',
-    type: lt.hill,
+    type: lt.mountain,
     rewards: [rt.fist, rt.leather, rt.pearl, rt.monsterHelmet, rt.consumable],
   },
   hillsOfMadrow: {
     name: 'Hills of Madrow',
-    type: lt.hill,
+    type: lt.mountain,
     rewards: [rt.dagger, rt.accessory, rt.bracer, rt.leather, rt.consumable],
   },
   isleOfLennu: {
@@ -83,79 +83,79 @@ export default {
   },
   lanardForest: {
     name: 'Lanard Forest',
-    type: lt.lanardForest,
+    type: lt.forest,
     rewards: [],
 
   },
   mastonRange: {
     name: 'Maston Range',
-    type: lt.mastonRange,
+    type: lt.mountain,
     rewards: [],
 
   },
   morrowBay: {
     name: 'Morrow Bay',
-    type: lt.morrowBay,
+    type: lt.saltwater,
     rewards: [],
 
   },
   mountMadroal: {
     name: 'Mount Madroal',
-    type: lt.mountMadroal,
+    type: lt.mountain,
     rewards: [],
 
   },
   mountRhode: {
     name: 'Mount Rhode',
-    type: lt.mountRhode,
+    type: lt.mountain,
     rewards: [],
 
   },
   neilsRuins: {
     name: 'Neils Ruins',
-    type: lt.neilsRuins,
+    type: lt.ruins,
     rewards: [],
 
   },
   ninfusSanctuary: {
     name: 'Ninfu\'s Sanctuary',
-    type: lt.ninfusSanctuary,
+    type: lt.holy,
     rewards: [],
 
   },
   orsonBay: {
     name: 'Orson Bay',
-    type: lt.orsonBay,
+    type: lt.saltwater,
     rewards: [],
 
   },
   peaksOfMaydel: {
     name: 'Peaks of Maydel',
-    type: lt.peaksOfMaydel,
+    type: lt.mountain,
     rewards: [],
 
   },
   plainsOfBlume: {
     name: 'Plains of Blume',
-    type: lt.plainsOfBlume,
+    type: lt.plains,
     rewards: [],
 
   },
   plainsOfDelza: {
     name: 'Plains of Delza',
-    type: lt.plainsOfDelza,
+    type: lt.plains,
     rewards: [],
 
   },
   plainsOfGaral: {
     name: 'Plains of Garal',
-    type: lt.plainsOfGaral,
+    type: lt.plains,
     rewards: [],
 
   },
   plainsOfKarina: {
     name: 'Plains of Karina',
-    type: lt.plainsOfKarina,
+    type: lt.plains,
     rewards: [],
 
   },
@@ -167,55 +167,55 @@ export default {
   },
   ruinsOfDapit: {
     name: 'Ruins of Dapit',
-    type: lt.ruinsOfDapit,
+    type: lt.ruins,
     rewards: [],
 
   },
   ruinsOfNarm: {
     name: 'Ruins of Narm',
-    type: lt.ruinsOfNarm,
+    type: lt.ruins,
     rewards: [],
 
   },
   ruinsOfShlay: {
     name: 'Ruins of Shlay',
-    type: lt.ruinsOfShlay,
+    type: lt.ruins,
     rewards: [],
 
   },
   rumiValley: {
     name: 'Rumi Valley',
-    type: lt.rumiValley,
+    type: lt.freshwater,
     rewards: [],
 
   },
   seaOfMarianna: {
     name: 'Sea of Marianna',
-    type: lt.seaOfMarianna,
+    type: lt.saltwater,
     rewards: [],
 
   },
   shamlahFalls: {
     name: 'Shamlah Falls',
-    type: lt.shamlahFalls,
+    type: lt.freshwater,
     rewards: [],
 
   },
   shlayneStrait: {
     name: 'Shlayne Strait',
-    type: lt.shlayneStrait,
+    type: lt.saltwater,
     rewards: [],
 
   },
   silvanLakeside: {
     name: 'Silvan Lakeside',
-    type: lt.silvanLakeside,
+    type: lt.freshwater,
     rewards: [],
 
   },
   sintoGreatPlains: {
     name: 'Sinto Great Plains',
-    type: lt.sintoGreatPlains,
+    type: lt.plains,
     rewards: [],
 
   },
@@ -227,19 +227,19 @@ export default {
   },
   tilamValley: {
     name: 'Tilam Valley',
-    type: lt.tilamValley,
+    type: lt.freshwater,
     rewards: [],
 
   },
   twinlilShrine: {
     name: 'Twinlil Shrine',
-    type: lt.twinlilShrine,
+    type: lt.holy,
     rewards: [],
 
   },
   woodlandsOfLem: {
     name: 'Woodlands of Lem',
-    type: lt.woodlandsOfLem,
+    type: lt.forest,
     rewards: [],
 
   },

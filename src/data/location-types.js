@@ -1,6 +1,6 @@
 export default {
   forest: { name: 'Forest' },
-  fort: { name: 'Fort' },
+  fortPastous: { name: 'Fort Pastous' },
   freshwater: { name: 'Freshwater' },
   hiddenTreasury: { name: 'Hidden Treasury' },
   holy: { name: 'Holy' },
