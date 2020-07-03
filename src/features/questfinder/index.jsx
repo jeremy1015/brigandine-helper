@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { Container, Card, CardHeader, CardBody, CardTitle, ListGroup, ListGroupItem, ListGroupItemHeading, Row, Col, Alert } from 'reactstrap';
+import { Container, Card, CardHeader, CardBody, CardTitle, ListGroup, ListGroupItem, ListGroupItemHeading, Row, Col } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import classes from '../../data/classes';
@@ -35,17 +35,43 @@ const Questfinder = () => {
   };
 
   useEffect(() => {
+    let results;
     if (!(selectedClass && selectedClass[0] && selectedRewards && selectedRewards[0])) {
-      setQueryResults([]);
-      return;
+      results = [];
     }
-    const results = selectedClass.map(c => ({
-      name: c.name,
-      rewardResults: selectedRewards.map(r => ({
-        name: r.name,
-        locationMatches: _.filter(locationArr, l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
-      })),
-    }));
+    if (!(selectedClass && selectedClass[0]) && (selectedRewards && selectedRewards[0])) {
+      results = classArr.map(c => ({
+        key: c.name,
+        name: c.name,
+        rewardResults: selectedRewards.map(r => ({
+          key: r.name,
+          name: r.name,
+          locationMatches: locationArr.filter(l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
+        })),
+      }));
+    }
+    if ((selectedClass && selectedClass[0]) && !(selectedRewards && selectedRewards[0])) {
+      results = selectedClass.map(c => ({
+        key: c.name,
+        name: c.name,
+        rewardResults: rewardArr.map(r => ({
+          key: r.name,
+          name: r.name,
+          locationMatches: locationArr.filter(l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
+        })),
+      }));
+    }
+    if (selectedClass && selectedClass[0] && selectedRewards && selectedRewards[0]) {
+      results = selectedClass.map(c => ({
+        key: c.name,
+        name: c.name,
+        rewardResults: selectedRewards.map(r => ({
+          key: r.name,
+          name: r.name,
+          locationMatches: locationArr.filter(l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
+        })),
+      }));
+    }
     console.log(results);
     setQueryResults(results);
   }, [selectedClass, selectedRewards, selectedCities]);
@@ -100,7 +126,7 @@ const Questfinder = () => {
           <hr />
           <div>
             {(!(queryResults && queryResults[0])) && 'No Results'}
-            {(queryResults && queryResults[0]) 
+            {(queryResults && queryResults[0])
           && queryResults.map(r => (
             <div>
               <h3>{r.name}</h3>
@@ -137,9 +163,9 @@ const Questfinder = () => {
 Questfinder.defaultProps = { };
 
 Questfinder.propTypes = {};
-  
+
 const mapStateToProps = state => ({});
-  
+
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questfinder);
