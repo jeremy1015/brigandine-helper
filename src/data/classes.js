@@ -3,8 +3,8 @@ import lt from './location-types';
 // TODO - Add in data for Barrett and Bazoo when completed by Lasci.
 
 export default {
-  knight: {
-    name: 'Knight',
+  fighter: {
+    name: 'Fighter/Knight/Paladin/Dark Knight',
     questBonus: [
       lt.fort,
       lt.holy,
@@ -13,14 +13,14 @@ export default {
     ],
   },
   swordsman: {
-    name: 'Swordsman',
+    name: 'Swordsman/Sword Master',
     questBonus: [
       lt.forest,
       lt.isleOfTrembo,
       lt.ivoryDragonSpring,
     ],
   },
-  berserker: {
+  barbarian: {
     name: 'Barbarian/Berserker',
     questBonus: [
       lt.highlands,
@@ -34,8 +34,8 @@ export default {
       lt.saltwater,
     ],
   },
-  ranger: {
-    name: 'Ranger',
+  thief: {
+    name: 'Thief/Ranger/Treasure Hunter',
     questBonus: [
       lt.enduraWastelands,
       lt.forest,
@@ -51,8 +51,8 @@ export default {
       lt.theManaSpring,
     ],
   },
-  grappler: {
-    name: 'Grappler',
+  monk: {
+    name: 'Monk/Grappler/Champion',
     questBonus: [
       lt.hill,
       lt.mountain,
@@ -74,8 +74,8 @@ export default {
       lt.ruins,
     ],
   },
-  bishop: {
-    name: 'Bishop',
+  priest: {
+    name: 'Priest/Bishop/Cardinal',
     questBonus: [
       lt.hiddenTreasury,
       lt.holy,
@@ -85,16 +85,16 @@ export default {
       lt.plains,
     ],
   },
-  templeKnight: {
-    name: 'Temple Knight',
+  lancer: {
+    name: 'Lancer/Temple Knight/Royal Guard',
     questBonus: [
       lt.freshwater,
       lt.ivoryDragonSpring,
       lt.poudValley,
     ],
   },
-  archer: {
-    name: 'Archer',
+  hunter: {
+    name: 'Hunter/Archer/Sniper',
     questBonus: [
       lt.forest,
       lt.isleOfTrembo,
@@ -102,8 +102,8 @@ export default {
       lt.poudValley,
     ],
   },
-  minstrel: {
-    name: 'Minstrel',
+  bard: {
+    name: 'Bard/Minstrel/Troubadour',
     questBonus: [
       lt.valley,
       lt.forest,
@@ -112,8 +112,8 @@ export default {
       lt.poudValley,
     ],
   },
-  rogue: {
-    name: 'Rogue',
+  dancer: {
+    name: 'Dancer/Rogue/Assassin',
     questBonus: [
       lt.fort,
       lt.isleOfSeymour,
@@ -137,8 +137,8 @@ export default {
       lt.ruins,
     ],
   },
-  healer: {
-    name: 'Healer',
+  cleric: {
+    name: 'Cleric/Healer/Saint',
     questBonus: [
       lt.hiddenTreasury,
       lt.holy,
