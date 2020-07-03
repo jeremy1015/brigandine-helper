@@ -30,7 +30,7 @@ const Questfinder = () => {
 
   const factionToggle = (event, f) => {
     let newCities;
-    const faction = factions[f.name.toLowerCase()];
+    const faction = factionsArr.find(fa => fa.name === f.name);
     if (faction.starterCities.every(c => selectedCities.includes(c))) {
       newCities = selectedCities.filter(c => !faction.starterCities.includes(c));
     } else {
