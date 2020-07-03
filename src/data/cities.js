@@ -145,6 +145,7 @@ export default {
     locations: [
       locs.woodlandsOfLem,
       locs.shamlahFalls,
+      locs.hiddenTreasury
     ],
   },
   koaloopa: {
@@ -189,6 +190,7 @@ export default {
     locations: [
       locs.woodlandsOfLem,
       locs.ivoryDragonSpring,
+      locs.hiddenTreasury,
     ],
   },
   milveen: {
@@ -281,6 +283,7 @@ export default {
       locs.woodlandsOfLem,
       locs.shamlahFalls,
       locs.chimJungle,
+      locs.hiddenTreasury,
     ],
   },
   vestillis: {

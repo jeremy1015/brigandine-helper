@@ -1,5 +1,7 @@
 export default {
   accessory: { name: 'Accessory' },
+  axe: { name: 'Axe' },
+  bow: { name: 'Bow' },
   bracer: { name: 'Bracer' },
   chalice: { name: 'Chalice' },
   claws: { name: 'Claws' },
@@ -28,4 +30,5 @@ export default {
   staff: { name: 'Staff' },
   sword: { name: 'Sword' },
   teeth: { name: 'Teeth' },
+  instrument: { name: 'Instrument' },
 };
