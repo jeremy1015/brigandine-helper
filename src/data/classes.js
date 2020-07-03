@@ -1,5 +1,7 @@
 import lt from './location-types';
 
+// TODO - Add in data for Barrett and Bazoo when completed by Lasci.
+
 export default {
   knight: {
     name: 'Knight',

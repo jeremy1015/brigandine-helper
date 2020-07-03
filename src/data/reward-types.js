@@ -3,6 +3,7 @@ export default {
   chalice: { name: 'Chalice' },
   hat: { name: 'Hat' },
   helmet: { name: 'Helmet' },
+  horseshoe: { name: 'Horseshoe' },
   mail: { name: 'Mail' },
   monsterAccessory: { name: 'Accessory (Monster)' },
   monsterHat: { name: 'Hat (Monster)' },

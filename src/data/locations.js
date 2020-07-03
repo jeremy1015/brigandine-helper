@@ -52,4 +52,9 @@ export default {
     type: lt.hill,
     rewards: [rt.dagger, rt.accesory, rt.bracer, rt.leather, rt.consumable],
   },
+  isleOfLennu: {
+    name: 'Isle Of Lennu',
+    type: lt.isleOfLennu,
+    rewards: [rt.horseshoe, rt.monsterBracer, rt.monsterLeather, rt.monsterAccessory, rt.crystal],
+  },
 };
