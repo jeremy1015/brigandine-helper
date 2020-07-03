@@ -18,6 +18,7 @@ export default {
       lt.forest,
       lt.isleOfTrembo,
       lt.ivoryDragonSpring,
+      lt.poudValley,
     ],
   },
   barbarian: {
