@@ -41,8 +41,10 @@ const Questfinder = () => {
     }
     if (!(selectedClass && selectedClass[0]) && (selectedRewards && selectedRewards[0])) {
       results = classArr.map(c => ({
+        key: c.name,
         name: c.name,
         rewardResults: selectedRewards.map(r => ({
+          key: r.name,
           name: r.name,
           locationMatches: locationArr.filter(l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
         })),
@@ -50,8 +52,10 @@ const Questfinder = () => {
     }
     if ((selectedClass && selectedClass[0]) && !(selectedRewards && selectedRewards[0])) {
       results = selectedClass.map(c => ({
+        key: c.name,
         name: c.name,
         rewardResults: rewardArr.map(r => ({
+          key: r.name,
           name: r.name,
           locationMatches: locationArr.filter(l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
         })),
@@ -59,8 +63,10 @@ const Questfinder = () => {
     }
     if (selectedClass && selectedClass[0] && selectedRewards && selectedRewards[0]) {
       results = selectedClass.map(c => ({
+        key: c.name,
         name: c.name,
         rewardResults: selectedRewards.map(r => ({
+          key: r.name,
           name: r.name,
           locationMatches: locationArr.filter(l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
         })),
