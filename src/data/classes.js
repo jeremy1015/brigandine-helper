@@ -11,6 +11,7 @@ export default {
       lt.sanctuary,
       lt.shrine,
       lt.fortPastous,
+      lt.isleOfLennu,
     ],
   },
   swordsman: {
@@ -79,6 +80,14 @@ export default {
       lt.alps,
     ],
   },
+  mage: {
+    name: 'Mage',
+    questBonus: [
+      lt.plains,
+      lt.highlands,
+      lt.isleOfSeymour
+    ],
+  },
   sorcerer: {
     name: 'Sorcerer',
     questBonus: [
@@ -88,6 +97,7 @@ export default {
       lt.plains,
       lt.highlands,
       lt.fortPastous,
+      lt.isleOfSeymour
     ],
   },
   bishop: {
@@ -98,6 +108,9 @@ export default {
       lt.sanctuary,
       lt.shrine,
       lt.hiddenTreasury,
+      lt.isleOfLennu,
+      lt.isleOfMartha,
+      lt.manaSpring,
     ],
   },
   templeKnight: {
@@ -112,6 +125,7 @@ export default {
   archer: {
     name: 'Archer',
     questBonus: [
+      lt.valley,
       lt.forest,
       lt.jungle,
       lt.woodland,
@@ -122,6 +136,7 @@ export default {
   minstrel: {
     name: 'Minstrel',
     questBonus: [
+      lt.valley,
       lt.forest,
       lt.jungle,
       lt.woodland,
@@ -150,6 +165,15 @@ export default {
       lt.fortPastous,
     ],
   },
+  witch: {
+    name: 'Witch',
+    questBonus: [
+      lt.plains,
+      lt.highlands,
+      lt.fortPastous,
+      lt.isleOfSeymour,
+    ],
+  },
   healer: {
     name: 'Healer',
     questBonus: [
@@ -157,6 +181,9 @@ export default {
       lt.highlands,
       lt.sanctuary,
       lt.shrine,
+      lt.isleOfLennu,
+      lt.isleOfMartha,
+      lt.manaSpring,
       lt.hiddenTreasury,
     ],
   },
