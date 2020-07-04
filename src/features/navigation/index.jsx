@@ -51,6 +51,11 @@ const NavigationBar = () => (
             Location Questfinder
           </NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink tag={Link} to={routes.knightbrowser}>
+            Knight Browser
+          </NavLink>
+        </NavItem>
       </Nav>
     </Collapse>
   </Navbar>
