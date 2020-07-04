@@ -28,6 +28,19 @@ const Questfinder = () => {
   const [availableCities, setAvailableCities] = useState(locsByCity(cityArr));
   const [queryResults, setQueryResults] = useState([]);
 
+  const factionToggle = (event, f) => {
+    let newCities;
+    const faction = factionsArr.find(fa => fa.name === f.name);
+    if (faction.starterCities.every(c => selectedCities.includes(c))) {
+      newCities = selectedCities.filter(c => !faction.starterCities.includes(c));
+    } else {
+      newCities = [...new Set([...f.starterCities, ...selectedCities])];
+    }
+    setSelectedCities(newCities);
+    setAvailableCities(locsByCity(newCities));
+    event.preventDefault();
+  };
+
   const cityToggle = (event, c) => {
     const newCities = selectedCities.includes(c) ? _.without(selectedCities, c) : [...selectedCities, c];
     setSelectedCities(newCities);
@@ -85,7 +98,9 @@ const Questfinder = () => {
             {factionsArr.map(f => (
               <Fragment key={f.name}>
                 <ListGroupItem>
-                  <ListGroupItemHeading>{f.name}</ListGroupItemHeading>
+                  <ListGroupItemHeading key={f.name} tag="a" href="#" onClick={event => factionToggle(event, f)}>
+                    {f.name}
+                  </ListGroupItemHeading>
                 </ListGroupItem>
                 {f.starterCities.map(c => (
                   <ListGroupItem
