@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
+import _, { isEmpty } from 'lodash';
 import { 
-  Button, Container, Card, CardHeader, CardBody, CardTitle, CardText, ListGroup, 
-  ListGroupItem, ListGroupItemHeading, Row, Col, Form, Input, FormGroup, Label,
+  Button, Container, Card, CardHeader, CardBody, Table,
+  Row, Col, Form, Input, FormGroup, Label,
 } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
@@ -20,61 +20,77 @@ const cityArr = Object.values(cities);
 const factionsArr = Object.values(factions);
 
 const Questfinder = () => {
-  const locsByCity = cArray => locationArr.reduce((m, location) => ({ ...m, [location.name]: cArray.filter(c => c.locations.includes(location)) }), {});
   const [selectedClass, setSelectedClass] = useState([]);
   const [selectedRewards, setSelectedRewards] = useState([]);
   const [selectedCities, setSelectedCities] = useState([...cityArr]);
-  const [availableCities, setAvailableCities] = useState(locsByCity(cityArr));
   const [queryResults, setQueryResults] = useState([]);
+  const [showOnlyBestResult, setShowOnlyBestResult] = useState(true);
+  const [showRewardsColumn, setShowRewardsColumn] = useState(false);
+
+  const toggleShowOnlyBestResult = () => setShowOnlyBestResult(!showOnlyBestResult);
 
   const factionSelectAll = (e, f, shouldAdd) => {
-    const newCities = (shouldAdd) ? _.uniq([...f.starterCities, ...selectedCities]) : _.reject(selectedCities, c => f.starterCities.includes(c));
-    setSelectedCities(newCities);
-    setAvailableCities(locsByCity(newCities));
+    setSelectedCities((shouldAdd) ? _.uniq([...f.starterCities, ...selectedCities]) : _.reject(selectedCities, c => f.starterCities.includes(c)));
     e.preventDefault();
   };
 
-  const cityToggle = (c) => {
-    const newCities = selectedCities.includes(c) ? _.without(selectedCities, c) : [...selectedCities, c];
-    setSelectedCities(newCities);
-    setAvailableCities(locsByCity(newCities));
-  };
+  const cityToggle = c => setSelectedCities(selectedCities.includes(c) ? _.without(selectedCities, c) : [...selectedCities, c]);
+
+  const classQuery = () => selectedClass.map((c) => {
+    const bonusLocations = locationArr.filter(l => c.questBonus.includes(l.type));
+    const cityScores = _.reduce(selectedCities, (m, city) => {
+      const score = _.intersection(bonusLocations, city.locations).length;
+      if (score > 0) return [...m, { name: city.name, score }];
+      return m;
+    }, []);
+    return {
+      name: c.name,
+      scores: _.sortBy(cityScores, city => city.score * -1),
+    };
+  });
+
+  const rewardsQuery = () => selectedRewards.map((r) => {
+    const bonusLocations = locationArr.filter(l => l.rewards.includes(r));
+    const cityScores = _.reduce(selectedCities, (m, city) => {
+      const score = _.intersection(bonusLocations, city.locations).length;
+      if (score > 0) return [...m, { name: city.name, score }];
+      return m;
+    }, []);
+    return {
+      name: r.name,
+      scores: _.sortBy(cityScores, city => city.score * -1),
+    };
+  });
+
+  const fullQuery = () => selectedClass.map((c) => {
+    const bonusLocations = locationArr.filter(l => c.questBonus.includes(l.type));
+    const cityScores = _.reduce(selectedCities, (m, city) => {
+      const cityBonusLocations = _.intersection(bonusLocations, city.locations);
+      const rewards = _(cityBonusLocations)
+        .map(cbl => _.intersection(cbl.rewards, selectedRewards))
+        .flatten()
+        .uniq()
+        .value();
+      if (rewards.length > 0) return [...m, { name: city.name, score: rewards.length, rewards }];
+      return m;
+    }, []);
+    return {
+      name: c.name,
+      scores: _.sortBy(cityScores, city => city.score * -1),
+    };
+  });
 
   useEffect(() => {
+    if (!selectedClass) return;
     let results = [];
-
-    if (!(selectedClass && selectedClass[0]) && (selectedRewards && selectedRewards[0])) {
-      results = classArr.map(c => ({
-        key: c.name,
-        name: c.name,
-        rewardResults: selectedRewards.map(r => ({
-          key: r.name,
-          name: r.name,
-          locationMatches: locationArr.filter(l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
-        })),
-      }));
-    }
-    if ((selectedClass && selectedClass[0]) && !(selectedRewards && selectedRewards[0])) {
-      results = selectedClass.map(c => ({
-        key: c.name,
-        name: c.name,
-        rewardResults: rewardArr.map(r => ({
-          key: r.name,
-          name: r.name,
-          locationMatches: locationArr.filter(l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
-        })),
-      }));
-    }
-    if (selectedClass && selectedClass[0] && selectedRewards && selectedRewards[0]) {
-      results = selectedClass.map(c => ({
-        key: c.name,
-        name: c.name,
-        rewardResults: selectedRewards.map(r => ({
-          key: r.name,
-          name: r.name,
-          locationMatches: locationArr.filter(l => c.questBonus.includes(l.type) && l.rewards.includes(r)),
-        })),
-      }));
+    setShowRewardsColumn(false);
+    if (!_.isEmpty(selectedClass) && _.isEmpty(selectedRewards)) {
+      results = classQuery();
+    } else if (isEmpty(selectedClass) && !_.isEmpty(selectedRewards)) {
+      results = rewardsQuery();
+    } else if (!isEmpty(selectedClass) && !_.isEmpty(selectedRewards)) {
+      setShowRewardsColumn(true);
+      results = fullQuery();
     }
     setQueryResults(results);
   }, [selectedClass, selectedRewards, selectedCities]);
@@ -91,25 +107,24 @@ const Questfinder = () => {
                 <Button color="link" onClick={e => factionSelectAll(e, f, false)}>None</Button>
               </CardHeader>
               <CardBody>
-                <CardText>
-                  <Form>
-                    <Row>
-                      {_.sortBy(f.starterCities, 'name').map(c => (
-                        <Col key={c.name} xs={4}>
-                          <FormGroup check>
-                            <Input type="checkbox" onChange={event => cityToggle(c)} checked={selectedCities.includes(c)} /> 
-                            <Label check onClick={() => cityToggle(c)}>{` ${c.name}`}</Label>
-                          </FormGroup>
-                        </Col>
-                      ))}
-                    </Row>
-                  </Form>
-                </CardText>
+                <Form>
+                  <Row>
+                    {_.sortBy(f.starterCities, 'name').map(c => (
+                      <Col key={c.name} xs={4}>
+                        <FormGroup check>
+                          <Input type="checkbox" onChange={event => cityToggle(c)} checked={selectedCities.includes(c)} /> 
+                          <Label check onClick={() => cityToggle(c)}>{` ${c.name}`}</Label>
+                        </FormGroup>
+                      </Col>
+                    ))}
+                  </Row>
+                </Form>
               </CardBody>
             </Card>
           </Col>
         ))}
       </Row>
+      <hr />
       <Row>
         <Col sm="4">
           <Row>
@@ -137,37 +152,58 @@ const Questfinder = () => {
               />
             </Col>
           </Row>
+          <FormGroup check>
+            <Input type="checkbox" onChange={() => toggleShowOnlyBestResult()} checked={showOnlyBestResult} />
+            <Label check onClick={() => toggleShowOnlyBestResult()}>Show only best result</Label>
+          </FormGroup>
         </Col>
         <Col sm={8}>
+          <h4>Results</h4>
           <div>
-            {(!(queryResults && queryResults[0])) && 'No Results'}
-            {(queryResults && queryResults[0])
-                && queryResults.map(r => (
-                  <div>
-                    <h3>{r.name}</h3>
-                    <Row>
-                      {r.rewardResults.map(reward => (
-                        <Col md="4">
-                          <Card>
-                            <CardHeader tag="h4">{reward.name}</CardHeader>
-                            <CardBody>
-                              {reward.locationMatches.length === 0 && (<CardTitle>No Match Found!</CardTitle>)}
-                              {reward.locationMatches.map(m => (
-                                <Fragment>
-                                  <ListGroup flush>
-                                    <ListGroupItemHeading>{m.name}</ListGroupItemHeading>
-                                    {availableCities[m.name].map(city => (<ListGroupItem>{city.name}</ListGroupItem>))}
-                                  </ListGroup>
-                                </Fragment>
-                              ))}
-                            </CardBody>
-                          </Card>
-                        </Col>
-                      ))}
-                    </Row>
-                    <hr />
-                  </div>
-                ))}
+            {_.isEmpty(queryResults) && 'No Results'}
+            {!_.isEmpty(queryResults) && (
+              <div>
+                <Table>
+                  <thead>
+                    <tr>
+                      <td>{_.isEmpty(selectedClass) ? 'Reward' : 'Class'}</td>
+                      <td>City</td>
+                      <td>Score</td>
+                      {showRewardsColumn && <td>Rewards</td>}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {queryResults.map(cl => (
+                      <Fragment key={cl.name}>
+                        {showOnlyBestResult && (
+                          <tr>
+                            <td>{cl.name}</td>
+                            <td>{_.isEmpty(cl.scores) ? 'No Result' : cl.scores[0].name}</td>
+                            <td>{_.isEmpty(cl.scores) ? 'No Result' : cl.scores[0].score}</td>
+                            {showRewardsColumn && <td>{_.isEmpty(cl.scores) ? 'No Result' : cl.scores[0].rewards.map(r => r.name).join(', ')}</td>}
+                          </tr>
+                        )}
+                        {(!showOnlyBestResult && _.isEmpty(cl.scores)) && (
+                          <tr>
+                            <td>{cl.name}</td>
+                            <td>No Result</td>
+                            <td>No Result</td>
+                          </tr>
+                        )}
+                        {!showOnlyBestResult && cl.scores.map((cs, i) => (
+                          <tr className={i === 0 ? 'table-success' : ''}>
+                            <td>{cl.name}</td>
+                            <td>{cs.name}</td>
+                            <td>{cs.score}</td>
+                            {showRewardsColumn && <td>{_.isEmpty(cl.scores) ? 'No Result' : cl.scores[i].rewards.map(r => r.name).join(', ')}</td>}
+                          </tr>
+                        ))}
+                      </Fragment>
+                    ))}
+                  </tbody>
+                </Table>
+              </div>
+            )}
           </div>
         </Col>
       </Row>

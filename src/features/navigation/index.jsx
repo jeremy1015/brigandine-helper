@@ -4,7 +4,6 @@ import {
   Navbar,
   NavbarBrand,
   Nav,
-  Container,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import eliza from '../../img/eliza.png';
