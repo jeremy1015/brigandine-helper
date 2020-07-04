@@ -102,8 +102,10 @@ const Questfinder = () => {
           <Col key={f.name} xs="4" className="mb-2">
             <Card>
               <CardHeader>
-                {`${f.name}  `}
+                <img src={f.flag} height="32" alt="Flag" />
+                {` ${f.name}  `}
                 <Button color="link" onClick={e => factionSelectAll(e, f, true)}>All</Button>
+                {' | '}
                 <Button color="link" onClick={e => factionSelectAll(e, f, false)}>None</Button>
               </CardHeader>
               <CardBody>
