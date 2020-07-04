@@ -1,7 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { Container, Card, CardHeader, CardBody, CardTitle, ListGroup, ListGroupItem, ListGroupItemHeading, Row, Col } from 'reactstrap';
+import { 
+  Button, Container, Card, CardHeader, CardBody, CardTitle, CardText, ListGroup, 
+  ListGroupItem, ListGroupItemHeading, Row, Col, Form, Input, FormGroup, Label,
+} from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import classes from '../../data/classes';
@@ -16,10 +19,6 @@ const locationArr = Object.values(locations);
 const cityArr = Object.values(cities);
 const factionsArr = Object.values(factions);
 
-const containerStyle = {
-  marginTop: '10px',
-};
-
 const Questfinder = () => {
   const locsByCity = cArray => locationArr.reduce((m, location) => ({ ...m, [location.name]: cArray.filter(c => c.locations.includes(location)) }), {});
   const [selectedClass, setSelectedClass] = useState([]);
@@ -28,24 +27,17 @@ const Questfinder = () => {
   const [availableCities, setAvailableCities] = useState(locsByCity(cityArr));
   const [queryResults, setQueryResults] = useState([]);
 
-  const factionToggle = (event, f) => {
-    let newCities;
-    const faction = factionsArr.find(fa => fa.name === f.name);
-    if (faction.starterCities.every(c => selectedCities.includes(c))) {
-      newCities = selectedCities.filter(c => !faction.starterCities.includes(c));
-    } else {
-      newCities = [...new Set([...f.starterCities, ...selectedCities])];
-    }
+  const factionSelectAll = (e, f, shouldAdd) => {
+    const newCities = (shouldAdd) ? _.uniq([...f.starterCities, ...selectedCities]) : _.reject(selectedCities, c => f.starterCities.includes(c));
     setSelectedCities(newCities);
     setAvailableCities(locsByCity(newCities));
-    event.preventDefault();
+    e.preventDefault();
   };
 
-  const cityToggle = (event, c) => {
+  const cityToggle = (c) => {
     const newCities = selectedCities.includes(c) ? _.without(selectedCities, c) : [...selectedCities, c];
     setSelectedCities(newCities);
     setAvailableCities(locsByCity(newCities));
-    event.preventDefault();
   };
 
   useEffect(() => {
@@ -84,40 +76,42 @@ const Questfinder = () => {
         })),
       }));
     }
-    console.log(results);
     setQueryResults(results);
   }, [selectedClass, selectedRewards, selectedCities]);
   return (
-    <Container style={containerStyle}>
+    <Container fluid className="mt-3 pl-3 pr-3">
       <h3 className="text-center">Quest Location Finder</h3>
-      <hr />
       <Row>
-        <Col sm="3">
-          <h4>Cities</h4>
-          <ListGroup>
-            {factionsArr.map(f => (
-              <Fragment key={f.name}>
-                <ListGroupItem>
-                  <ListGroupItemHeading key={f.name} tag="a" href="#" onClick={event => factionToggle(event, f)}>
-                    {f.name}
-                  </ListGroupItemHeading>
-                </ListGroupItem>
-                {f.starterCities.map(c => (
-                  <ListGroupItem
-                    key={c.name}
-                    tag="a"
-                    href="#"
-                    onClick={event => cityToggle(event, c)}
-                    color={selectedCities.includes(c) ? 'success' : 'secondary'}
-                  >
-                    {c.name}
-                  </ListGroupItem>
-                ))}
-              </Fragment>
-            ))}
-          </ListGroup>
-        </Col>
-        <Col sm="9">
+        {factionsArr.map(f => (
+          <Col key={f.name} xs="4" className="mb-2">
+            <Card>
+              <CardHeader>
+                {`${f.name}  `}
+                <Button color="link" onClick={e => factionSelectAll(e, f, true)}>All</Button>
+                <Button color="link" onClick={e => factionSelectAll(e, f, false)}>None</Button>
+              </CardHeader>
+              <CardBody>
+                <CardText>
+                  <Form>
+                    <Row>
+                      {_.sortBy(f.starterCities, 'name').map(c => (
+                        <Col key={c.name} xs={4}>
+                          <FormGroup check>
+                            <Input type="checkbox" onChange={event => cityToggle(c)} checked={selectedCities.includes(c)} /> 
+                            <Label check onClick={() => cityToggle(c)}>{` ${c.name}`}</Label>
+                          </FormGroup>
+                        </Col>
+                      ))}
+                    </Row>
+                  </Form>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+      <Row>
+        <Col sm="4">
           <Row>
             <Col sm="12">
               <h4>Selections</h4>
@@ -143,36 +137,37 @@ const Questfinder = () => {
               />
             </Col>
           </Row>
-          <hr />
+        </Col>
+        <Col sm={8}>
           <div>
             {(!(queryResults && queryResults[0])) && 'No Results'}
             {(queryResults && queryResults[0])
-          && queryResults.map(r => (
-            <div>
-              <h3>{r.name}</h3>
-              <Row>
-                {r.rewardResults.map(reward => (
-                  <Col md="4">
-                    <Card>
-                      <CardHeader tag="h4">{reward.name}</CardHeader>
-                      <CardBody>
-                        {reward.locationMatches.length === 0 && (<CardTitle>No Match Found!</CardTitle>)}
-                        {reward.locationMatches.map(m => (
-                          <Fragment>
-                            <ListGroup flush>
-                              <ListGroupItemHeading>{m.name}</ListGroupItemHeading>
-                              {availableCities[m.name].map(city => (<ListGroupItem>{city.name}</ListGroupItem>))}
-                            </ListGroup>
-                          </Fragment>
-                        ))}
-                      </CardBody>
-                    </Card>
-                  </Col>
+                && queryResults.map(r => (
+                  <div>
+                    <h3>{r.name}</h3>
+                    <Row>
+                      {r.rewardResults.map(reward => (
+                        <Col md="4">
+                          <Card>
+                            <CardHeader tag="h4">{reward.name}</CardHeader>
+                            <CardBody>
+                              {reward.locationMatches.length === 0 && (<CardTitle>No Match Found!</CardTitle>)}
+                              {reward.locationMatches.map(m => (
+                                <Fragment>
+                                  <ListGroup flush>
+                                    <ListGroupItemHeading>{m.name}</ListGroupItemHeading>
+                                    {availableCities[m.name].map(city => (<ListGroupItem>{city.name}</ListGroupItem>))}
+                                  </ListGroup>
+                                </Fragment>
+                              ))}
+                            </CardBody>
+                          </Card>
+                        </Col>
+                      ))}
+                    </Row>
+                    <hr />
+                  </div>
                 ))}
-              </Row>
-              <hr />
-            </div>
-          ))}
           </div>
         </Col>
       </Row>
