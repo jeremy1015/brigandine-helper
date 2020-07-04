@@ -130,6 +130,7 @@ const Questfinder = () => {
           <Row>
             <Col sm="12">
               <h4>Selections</h4>
+              Classes
               <Typeahead
                 id="class-typeahead"
                 labelKey="name"
@@ -137,11 +138,13 @@ const Questfinder = () => {
                 options={classArr}
                 placeholder="Choose one or more classes..."
                 onChange={setSelectedClass}
+                className="mb-2"
               />
             </Col>
           </Row>
           <Row>
             <Col sm="12">
+              Rewards
               <Typeahead
                 id="reward-typeahead"
                 labelKey="name"
@@ -149,12 +152,13 @@ const Questfinder = () => {
                 multiple
                 placeholder="Choose some quest objectives..."
                 onChange={setSelectedRewards}
+                className="mb-4"
               />
             </Col>
           </Row>
           <FormGroup check>
             <Input type="checkbox" onChange={() => toggleShowOnlyBestResult()} checked={showOnlyBestResult} />
-            <Label check onClick={() => toggleShowOnlyBestResult()}>Show only best result</Label>
+            <Label check onClick={() => toggleShowOnlyBestResult()}><strong>Show only best result</strong></Label>
           </FormGroup>
         </Col>
         <Col sm={8}>
