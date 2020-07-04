@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import _, { isEmpty } from 'lodash';
-import { 
+import {
   Button, Container, Card, CardHeader, CardBody, Table,
   Row, Col, Form, Input, FormGroup, Label,
 } from 'reactstrap';
@@ -71,12 +71,28 @@ const Questfinder = () => {
         .flatten()
         .uniq()
         .value();
+      // const chuck = cityBonusLocations.map(cbl => _.intersection(cbl.rewards, selectedRewards).length);
+      // console.log(chuck);
+      // const score = Math.max([0, ...cityBonusLocations.map(cbl => _.intersection(cbl.rewards, selectedRewards).length)]);
+      // console.log(score);
       if (rewards.length > 0) return [...m, { name: city.name, score: rewards.length, rewards }];
+      return m;
+    }, []);
+    const cityScoresV2 = selectedCities.reduce((m, city) => {
+      const cityBonusLocations = _.intersection(bonusLocations, city.locations);
+      const bonusLocationsRewardsCount = cityBonusLocations.map(cbl => _.intersection(cbl.rewards, selectedRewards).length);
+      const sc = Math.max(0, ...bonusLocationsRewardsCount);
+      const rewards = _(cityBonusLocations)
+        .map(cbl => _.intersection(cbl.rewards, selectedRewards))
+        .flatten()
+        .uniq()
+        .value();
+      if (sc > 0) return [...m, { name: city.name, score: sc, rewards }];
       return m;
     }, []);
     return {
       name: c.name,
-      scores: _.sortBy(cityScores, city => city.score * -1),
+      scores: _.sortBy(cityScoresV2, city => city.score * -1),
     };
   });
 
@@ -114,7 +130,7 @@ const Questfinder = () => {
                     {_.sortBy(f.starterCities, 'name').map(c => (
                       <Col key={c.name} xs={4}>
                         <FormGroup check>
-                          <Input type="checkbox" onChange={event => cityToggle(c)} checked={selectedCities.includes(c)} /> 
+                          <Input type="checkbox" onChange={event => cityToggle(c)} checked={selectedCities.includes(c)} />
                           <Label check onClick={() => cityToggle(c)}>{` ${c.name}`}</Label>
                         </FormGroup>
                       </Col>
@@ -194,6 +210,7 @@ const Questfinder = () => {
                             <td>{cl.name}</td>
                             <td>No Result</td>
                             <td>No Result</td>
+                            {showRewardsColumn && <td>No Result</td>}
                           </tr>
                         )}
                         {!showOnlyBestResult && cl.scores.map((cs, i) => (
