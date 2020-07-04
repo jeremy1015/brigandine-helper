@@ -31,7 +31,6 @@ export default {
   viking: {
     name: 'Viking',
     questBonus: [
-      lt.freshwater,
       lt.saltwater,
     ],
   },
