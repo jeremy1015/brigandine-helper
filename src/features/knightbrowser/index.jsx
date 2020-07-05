@@ -3,6 +3,7 @@ import {
   Form, Container, FormGroup, Label, CardBody, Table,
   Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
+import _, { get } from 'lodash';
 import { connect } from 'react-redux';
 import knights from '../../data/knights';
 import factions from '../../data/factions';
@@ -58,10 +59,14 @@ const Knightbrowser = () => {
             <tbody>
               {displayedKnights
                 .sort((knight1, knight2) => {
-                  if (knight1[sortProp] < knight2[sortProp]) {
+                  const sorBy = sortProp === 'faction' ? `${sortProp}.name` : sortProp;
+                  const val1 = _.get(knight1, sorBy, '');
+                  const val2 = _.get(knight2, sorBy, '');
+                  
+                  if (val1 < val2) {
                     return sortOrder === 'asc' ? -1 : 1;
                   }
-                  if (knight1[sortProp] > knight2[sortProp]) {
+                  if (val1 > val2) {
                     return sortOrder === 'asc' ? 1 : -1;
                   }
                   return 0;
@@ -70,13 +75,13 @@ const Knightbrowser = () => {
                   if (factionFilter === 'All') {
                     return true;
                   } 
-                  return knight.faction === factionFilter;
+                  return knight.faction.name === factionFilter;
                 })
                 .map(knight => (
                   <Fragment key={knight.name}>
                     <tr>
                       <td>{knight.name}</td>
-                      <td>{knight.faction}</td>
+                      <td>{knight.faction.name}</td>
                       <td>{knight.maxManaPool}</td>
                     </tr>
                   </Fragment>
