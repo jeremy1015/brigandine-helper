@@ -26,65 +26,144 @@ const cardinal = {
   questBonus: [...bishop.questBonus],
 };
 
+const fighter = {
+  name: 'Fighter',
+  questBonus: [],
+};
+
+const knight = {
+  name: 'Knight',
+  parentClass: fighter,
+  questBonus: [
+    lt.fort,
+    lt.holy,
+    lt.isleOfLennu,
+    lt.plains,
+  ],
+}
+
+const paladin = {
+  name: 'Paladin',
+  parentClass: knight,
+  questBonus: [...knight.questBonus],
+}
+
+const darkKnight = {
+  name: 'Dark Knight',
+  parentClass: knight,
+  questBonus: [...knight.questBonus],
+}
+
+const swordman = {
+  name: 'Swordman',
+  parentClass: fighter,
+  questBonus: [
+    lt.forest,
+    lt.isleOfTrembo,
+    lt.ivoryDragonSpring,
+    lt.poudValley,
+  ],
+}
+
+const swordMaster = {
+  name: 'Sword Master',
+  parentClass: swordman,
+  questBonus: [...swordman.questBonus],
+}
+
+const barbarian = {
+  name: 'Barbarian',
+  questBonus: [],
+};
+
+const berserker = {
+  name: 'Berserker',
+  parentClass: barbarian,
+  questBonus: [
+    lt.plains
+  ],
+}
+
+const viking = {
+  name: 'Viking',
+  parentClass: berserker,
+  questBonus: [
+    lt.valley,
+    lt.poudValley,
+    lt.saltwater
+  ],
+}
+
+const thief = {
+  name: 'Thief',
+  questBonus: [],
+};
+
+const ranger = {
+  name: 'Ranger',
+  parentClass: thief,
+  questBonus: [
+    lt.enduraWastelands,
+    lt.forest,
+    lt.fort,
+    lt.hiddenTreasury,
+    lt.holy,
+    lt.isleOfLennu,
+    lt.isleOfMartha,
+    lt.isleOfTrembo,
+    lt.mountain,
+    lt.ruins,
+    lt.saltwater,
+    lt.theManaSpring,
+  ],
+};
+
+const treasureHunter = {
+  name: 'Treasure Hunter',
+  parentClass: ranger,
+  questBonus: [...ranger],
+};
+
+const monk = {
+  name: 'Monk',
+  questBonus: [],
+};
+
+const grappler = {
+  name: 'Grappler',
+  parentClass: monk,
+  questBonus: [
+    lt.hill,
+    lt.mountain,
+  ],
+};
+
+const champion = {
+  name: 'Champion',
+  parentClass: monk,
+  questBonus: [...grappler],
+};
+
+
 export default {
   priest,
   bishop,
   cardinal,
-  fighter: {
-    name: 'Fighter/Knight/Paladin/Dark Knight',
-    questBonus: [
-      lt.fort,
-      lt.holy,
-      lt.isleOfLennu,
-      lt.plains,
-    ],
-  },
-  swordsman: {
-    name: 'Swordsman/Sword Master',
-    questBonus: [
-      lt.forest,
-      lt.isleOfTrembo,
-      lt.ivoryDragonSpring,
-      lt.poudValley,
-    ],
-  },
-  barbarian: {
-    name: 'Barbarian/Berserker',
-    questBonus: [
-      lt.highlands,
-      lt.plains,
-    ],
-  },
-  viking: {
-    name: 'Viking',
-    questBonus: [
-      lt.saltwater,
-    ],
-  },
-  thief: {
-    name: 'Thief/Ranger/Treasure Hunter',
-    questBonus: [
-      lt.enduraWastelands,
-      lt.forest,
-      lt.fort,
-      lt.hiddenTreasury,
-      lt.holy,
-      lt.isleOfLennu,
-      lt.isleOfMartha,
-      lt.isleOfTrembo,
-      lt.mountain,
-      lt.ruins,
-      lt.saltwater,
-      lt.theManaSpring,
-    ],
-  },
-  monk: {
-    name: 'Monk/Grappler/Champion',
-    questBonus: [
-      lt.hill,
-      lt.mountain,
-    ],
-  },
+  fighter,
+  knight,
+  paladin,
+  darkKnight,
+  swordsman,
+  swordMaster,
+  barbarian,
+  berserker,
+  viking,
+  thief,
+  ranger,
+  treasureHunter,
+  monk,
+  grappler,
+  champion,
   mage: {
     name: 'Mage',
     questBonus: [
