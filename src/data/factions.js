@@ -38,4 +38,8 @@ export default {
     name: 'Guimoule',
     starterCities: [c.cornwern, c.ellandol, c.gharghar, c.meraniel, c.orsol, c.angela, c.shumenly, c.drowarn],
   },
+  unaligned: {
+    name: 'Unaligned',
+    starterCities: [],
+  },
 };

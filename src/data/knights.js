@@ -1,12 +1,26 @@
 import f from './factions';
+import c from './classes';
+
+import imgAvenir from '../img/knight-avenir.png';
 
 /* Knight Data Model
-    Feel free to suggest changes. I'm just using 
     knightName: {
-        faction: f.factionObject.name
-        maxManaPool : number //median from the excel provided from a tw forum
-        startingLocation: cityObject.name
-        // uhh i got lazy gonna add data now...
+        name: STRING,
+        maxManaPool: NUMBER,
+        faction: OBJECT REFERENCE,
+        startingClass: OBJECT REFERENCE,
+        img: IMPORTED IMAGE REFERENCE,
+        growthRate: STRING,
+        growth: STRING,
+        startingLevel: NUMBER,
+        startingHP: NUMBER,
+        attack: NUMBER,
+        defense: NUMBER,
+        str: NUMBER,
+        int: NUMBER,
+        agi: NUMBER,
+        manaPool: NUMBER,
+        runeArea: NUMBER,
     }
 */
 
@@ -151,6 +165,19 @@ export default {
     name: 'Avenir',
     maxManaPool: 260,
     faction: f.guimoule,
+    startingClass: c.bishop,
+    img: imgAvenir,
+    growthRate: 'D',
+    growth: 'C',
+    startingLevel: 12,
+    startingHP: 283,
+    attack: 93,
+    defense: 110,
+    str: 62,
+    int: 76,
+    agi: 76,
+    manaPool: 188,
+    runeArea: 3,
   },
   Faye: {
     name: 'Faye',

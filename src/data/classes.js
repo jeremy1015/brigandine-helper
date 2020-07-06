@@ -2,7 +2,34 @@ import lt from './location-types';
 
 // TODO - Add in data for Barrett and Bazoo when completed by Lasci.
 
+const priest = {
+  name: 'Priest',
+  questBonus: [],
+};
+
+const bishop = {
+  name: 'Bishop',
+  parentClass: priest,
+  questBonus: [
+    lt.hiddenTreasury,
+    lt.holy,
+    lt.isleOfLennu,
+    lt.isleOfMartha,
+    lt.manaSpring,
+    lt.plains,
+  ],
+};
+
+const cardinal = {
+  name: 'Cardinal',
+  parentClass: bishop,
+  questBonus: [...bishop.questBonus],
+};
+
 export default {
+  priest,
+  bishop,
+  cardinal,
   fighter: {
     name: 'Fighter/Knight/Paladin/Dark Knight',
     questBonus: [
@@ -72,17 +99,6 @@ export default {
       lt.isleOfSeymour,
       lt.plains,
       lt.ruins,
-    ],
-  },
-  priest: {
-    name: 'Priest/Bishop/Cardinal',
-    questBonus: [
-      lt.hiddenTreasury,
-      lt.holy,
-      lt.isleOfLennu,
-      lt.isleOfMartha,
-      lt.manaSpring,
-      lt.plains,
     ],
   },
   lancer: {
