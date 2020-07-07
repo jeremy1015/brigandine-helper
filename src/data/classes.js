@@ -121,7 +121,7 @@ const ranger = {
 const treasureHunter = {
   name: 'Treasure Hunter',
   parentClass: ranger,
-  questBonus: [...ranger],
+  questBonus: [...ranger.questBonus],
 };
 
 const monk = {
@@ -141,9 +141,181 @@ const grappler = {
 const champion = {
   name: 'Champion',
   parentClass: monk,
-  questBonus: [...grappler],
+  questBonus: [...grappler.questBonus],
 };
 
+const mage = {
+  name: "Mage",
+  questBonus: [
+    lt.isleOfSeymour,
+    lt.plains,
+  ],
+}
+
+const sorcerer = {
+  name: "Sorcerer",
+  parentClass: mage,
+  questBonus: [
+    lt.fort,
+    lt.isleOfSeymour,
+    lt.plains,
+    lt.ruins,
+  ],
+}
+
+const wizard = {
+  name: "wizard",
+  parentClass: sorcerer,
+  questBonus: [...sorcerer.questBonus],
+}
+
+const lancer = {
+  name: "Lancer",
+  questBonus: [],
+}
+
+const templeKnight = {
+  name: "Temple Knight",
+  parentClass: lancer,
+  questBonus: [
+    lt.freshwater,
+    lt.ivoryDragonSpring,
+    lt.poudValley,
+  ],
+}
+
+const royalGuard = {
+  name: "Royal Guard",
+  parentClass: templeKnight,
+  questBonus: [...templeKnight],
+}
+
+const hunter = {
+  name: "Hunter",
+  questBonus: [],
+}
+
+const archer = {
+  name: "Archer",
+  parentClass: hunter,
+  questBonus: [
+    lt.forest,
+    lt.isleOfTrembo,
+    lt.ivoryDragonSpring,
+    lt.poudValley,
+  ],
+}
+
+const sniper = {
+  name: "Sniper",
+  parentClass: archer,
+  questBonus: [...archer],
+}
+
+const bard = {
+  name: "Bard",
+  questBonus: [],
+}
+
+const minstrel = {
+  name: "Minstrel",
+  parentClass: bard,
+  questBonus: [
+    lt.valley,
+    lt.forest,
+    lt.isleOfTrembo,
+    lt.ivoryDragonSpring,
+    lt.poudValley,
+  ],
+}
+
+const troubadour = {
+  name: "Troubadour",
+  parentClass: minstrel,
+  questBonus: [...minstrel],
+}
+
+const dancer = {
+  name: "Dancer",
+  questBonus: [],
+}
+
+const rogue = {
+  name: "Rogue",
+  parentClass: dancer,
+  questBonus: [
+    lt.fort,
+    lt.isleOfSeymour,
+    lt.ruins,
+    lt.enduraWastelands,
+  ],
+}
+
+const assassin = {
+  name: "Assassin",
+  parentClass: rogue,
+  questBonus: [...rogue],
+}
+
+const enchantress = {
+  name: "Enchantress",
+  questBonus: [
+    lt.fortPastous,
+    lt.plains,
+  ],
+}
+
+const sorceress = {
+  name: "Sorceress",
+  parentClass: enchantress,
+  questBonus: [...enchantress.questBonus],
+}
+
+const witch = {
+  name: "Witch",
+  parentClass: sorceress,
+  questBonus: [
+    lt.fort,
+    lt.isleOfSeymour,
+    lt.plains,
+    lt.ruins,
+  ],
+}
+
+const cleric = {
+  name: "Cleric",
+  questBonus: [],
+}
+
+const healer = {
+  name: "Healer",
+  parentClass: cleric,
+  questBonus: [
+    lt.hiddenTreasury,
+    lt.holy,
+    lt.isleOfLennu,
+    lt.isleOfMartha,
+    lt.manaSpring,
+    lt.plains,
+  ],
+}
+
+const saint = {
+  name: "Saint",
+  parentClass: healer,
+  questBonus: [...healer],
+}
+
+const heroOfOld = {
+  name: 'Hero of Old',
+  questBonus: [
+    lt.holy,
+    lt.isleOfLennu,
+    lt.isleOfMartha,
+    lt.manaSpring,
+    lt.mountain,
+  ],
+}
 
 export default {
   priest,
@@ -164,93 +336,26 @@ export default {
   monk,
   grappler,
   champion,
-  mage: {
-    name: 'Mage',
-    questBonus: [
-      lt.isleOfSeymour,
-      lt.plains,
-    ],
-  },
-  sorcerer: {
-    name: 'Sorcerer/Wizard',
-    questBonus: [
-      lt.fort,
-      lt.isleOfSeymour,
-      lt.plains,
-      lt.ruins,
-    ],
-  },
-  lancer: {
-    name: 'Lancer/Temple Knight/Royal Guard',
-    questBonus: [
-      lt.freshwater,
-      lt.ivoryDragonSpring,
-      lt.poudValley,
-    ],
-  },
-  hunter: {
-    name: 'Hunter/Archer/Sniper',
-    questBonus: [
-      lt.forest,
-      lt.isleOfTrembo,
-      lt.ivoryDragonSpring,
-      lt.poudValley,
-    ],
-  },
-  bard: {
-    name: 'Bard/Minstrel/Troubadour',
-    questBonus: [
-      lt.valley,
-      lt.forest,
-      lt.isleOfTrembo,
-      lt.ivoryDragonSpring,
-      lt.poudValley,
-    ],
-  },
-  dancer: {
-    name: 'Dancer/Rogue/Assassin',
-    questBonus: [
-      lt.fort,
-      lt.isleOfSeymour,
-      lt.ruins,
-      lt.enduraWastelands,
-    ],
-  },
-  sorcereress: {
-    name: 'Enchantress/Sorceress',
-    questBonus: [
-      lt.fortPastous,
-      lt.plains,
-    ],
-  },
-  witch: {
-    name: 'Witch',
-    questBonus: [
-      lt.fort,
-      lt.isleOfSeymour,
-      lt.plains,
-      lt.ruins,
-    ],
-  },
-  cleric: {
-    name: 'Cleric/Healer/Saint',
-    questBonus: [
-      lt.hiddenTreasury,
-      lt.holy,
-      lt.isleOfLennu,
-      lt.isleOfMartha,
-      lt.manaSpring,
-      lt.plains,
-    ],
-  },
-  heroOfOld: {
-    name: 'Hero of Old',
-    questBonus: [
-      lt.holy,
-      lt.isleOfLennu,
-      lt.isleOfMartha,
-      lt.manaSpring,
-      lt.mountain,
-    ],
-  },
+  mage,
+  sorcerer,
+  wizard,
+  lancer,
+  templeKnight,
+  royalGuard,
+  hunter,
+  archer,
+  sniper,
+  bard,
+  minstrel,
+  troubadour,
+  dancer,
+  rogue,
+  assassin,
+  enchantress,
+  sorceress,
+  witch,
+  cleric,
+  healer,
+  saint,
+  heroOfOld,
 };
