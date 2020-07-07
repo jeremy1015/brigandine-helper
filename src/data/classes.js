@@ -187,7 +187,7 @@ const templeKnight = {
 const royalGuard = {
   name: "Royal Guard",
   parentClass: templeKnight,
-  questBonus: [...templeKnight],
+  questBonus: [...templeKnight.questBonus],
 }
 
 const hunter = {
@@ -209,7 +209,7 @@ const archer = {
 const sniper = {
   name: "Sniper",
   parentClass: archer,
-  questBonus: [...archer],
+  questBonus: [...archer.questBonus],
 }
 
 const bard = {
@@ -232,7 +232,7 @@ const minstrel = {
 const troubadour = {
   name: "Troubadour",
   parentClass: minstrel,
-  questBonus: [...minstrel],
+  questBonus: [...minstrel.questBonus],
 }
 
 const dancer = {
@@ -254,7 +254,7 @@ const rogue = {
 const assassin = {
   name: "Assassin",
   parentClass: rogue,
-  questBonus: [...rogue],
+  questBonus: [...rogue.questBonus],
 }
 
 const enchantress = {
@@ -303,7 +303,7 @@ const healer = {
 const saint = {
   name: "Saint",
   parentClass: healer,
-  questBonus: [...healer],
+  questBonus: [...healer.questBonus],
 }
 
 const heroOfOld = {
