@@ -7,6 +7,7 @@ import _, { get } from 'lodash';
 import { connect } from 'react-redux';
 import knights from '../../data/knights';
 import factions from '../../data/factions';
+import KnightCard from '../knightcard';
 
 const factionsArr = Object.values(factions);
 const knightsArr = Object.values(knights);
@@ -23,6 +24,7 @@ const Knightbrowser = () => {
 
   return (
     <Container fluid className="mt-3 pl-3 pr-3">
+      <KnightCard knight={knights.Avenir} />
       <h3 className="text-center">Knight Browser</h3>
       <Row>
         <Col sm="12">
