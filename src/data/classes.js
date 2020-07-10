@@ -40,22 +40,22 @@ const knight = {
     lt.isleOfLennu,
     lt.plains,
   ],
-}
+};
 
 const paladin = {
   name: 'Paladin',
   parentClass: knight,
   questBonus: [...knight.questBonus],
-}
+};
 
 const darkKnight = {
   name: 'Dark Knight',
   parentClass: knight,
   questBonus: [...knight.questBonus],
-}
+};
 
-const swordman = {
-  name: 'Swordman',
+const swordsman = {
+  name: 'swordsman',
   parentClass: fighter,
   questBonus: [
     lt.forest,
@@ -63,13 +63,13 @@ const swordman = {
     lt.ivoryDragonSpring,
     lt.poudValley,
   ],
-}
+};
 
 const swordMaster = {
   name: 'Sword Master',
-  parentClass: swordman,
-  questBonus: [...swordman.questBonus],
-}
+  parentClass: swordsman,
+  questBonus: [...swordsman.questBonus],
+};
 
 const barbarian = {
   name: 'Barbarian',
@@ -80,9 +80,9 @@ const berserker = {
   name: 'Berserker',
   parentClass: barbarian,
   questBonus: [
-    lt.plains
+    lt.plains,
   ],
-}
+};
 
 const viking = {
   name: 'Viking',
@@ -90,9 +90,9 @@ const viking = {
   questBonus: [
     lt.valley,
     lt.poudValley,
-    lt.saltwater
+    lt.saltwater,
   ],
-}
+};
 
 const thief = {
   name: 'Thief',
@@ -145,15 +145,15 @@ const champion = {
 };
 
 const mage = {
-  name: "Mage",
+  name: 'Mage',
   questBonus: [
     lt.isleOfSeymour,
     lt.plains,
   ],
-}
+};
 
 const sorcerer = {
-  name: "Sorcerer",
+  name: 'Sorcerer',
   parentClass: mage,
   questBonus: [
     lt.fort,
@@ -161,42 +161,42 @@ const sorcerer = {
     lt.plains,
     lt.ruins,
   ],
-}
+};
 
 const wizard = {
-  name: "wizard",
+  name: 'wizard',
   parentClass: sorcerer,
   questBonus: [...sorcerer.questBonus],
-}
+};
 
 const lancer = {
-  name: "Lancer",
+  name: 'Lancer',
   questBonus: [],
-}
+};
 
 const templeKnight = {
-  name: "Temple Knight",
+  name: 'Temple Knight',
   parentClass: lancer,
   questBonus: [
     lt.freshwater,
     lt.ivoryDragonSpring,
     lt.poudValley,
   ],
-}
+};
 
 const royalGuard = {
-  name: "Royal Guard",
+  name: 'Royal Guard',
   parentClass: templeKnight,
   questBonus: [...templeKnight.questBonus],
-}
+};
 
 const hunter = {
-  name: "Hunter",
+  name: 'Hunter',
   questBonus: [],
-}
+};
 
 const archer = {
-  name: "Archer",
+  name: 'Archer',
   parentClass: hunter,
   questBonus: [
     lt.forest,
@@ -204,21 +204,21 @@ const archer = {
     lt.ivoryDragonSpring,
     lt.poudValley,
   ],
-}
+};
 
 const sniper = {
-  name: "Sniper",
+  name: 'Sniper',
   parentClass: archer,
   questBonus: [...archer.questBonus],
-}
+};
 
 const bard = {
-  name: "Bard",
+  name: 'Bard',
   questBonus: [],
-}
+};
 
 const minstrel = {
-  name: "Minstrel",
+  name: 'Minstrel',
   parentClass: bard,
   questBonus: [
     lt.valley,
@@ -227,21 +227,21 @@ const minstrel = {
     lt.ivoryDragonSpring,
     lt.poudValley,
   ],
-}
+};
 
 const troubadour = {
-  name: "Troubadour",
+  name: 'Troubadour',
   parentClass: minstrel,
   questBonus: [...minstrel.questBonus],
-}
+};
 
 const dancer = {
-  name: "Dancer",
+  name: 'Dancer',
   questBonus: [],
-}
+};
 
 const rogue = {
-  name: "Rogue",
+  name: 'Rogue',
   parentClass: dancer,
   questBonus: [
     lt.fort,
@@ -249,30 +249,30 @@ const rogue = {
     lt.ruins,
     lt.enduraWastelands,
   ],
-}
+};
 
 const assassin = {
-  name: "Assassin",
+  name: 'Assassin',
   parentClass: rogue,
   questBonus: [...rogue.questBonus],
-}
+};
 
 const enchantress = {
-  name: "Enchantress",
+  name: 'Enchantress',
   questBonus: [
     lt.fortPastous,
     lt.plains,
   ],
-}
+};
 
 const sorceress = {
-  name: "Sorceress",
+  name: 'Sorceress',
   parentClass: enchantress,
   questBonus: [...enchantress.questBonus],
-}
+};
 
 const witch = {
-  name: "Witch",
+  name: 'Witch',
   parentClass: sorceress,
   questBonus: [
     lt.fort,
@@ -280,15 +280,15 @@ const witch = {
     lt.plains,
     lt.ruins,
   ],
-}
+};
 
 const cleric = {
-  name: "Cleric",
+  name: 'Cleric',
   questBonus: [],
-}
+};
 
 const healer = {
-  name: "Healer",
+  name: 'Healer',
   parentClass: cleric,
   questBonus: [
     lt.hiddenTreasury,
@@ -298,13 +298,13 @@ const healer = {
     lt.manaSpring,
     lt.plains,
   ],
-}
+};
 
 const saint = {
-  name: "Saint",
+  name: 'Saint',
   parentClass: healer,
   questBonus: [...healer.questBonus],
-}
+};
 
 const heroOfOld = {
   name: 'Hero of Old',
@@ -315,7 +315,7 @@ const heroOfOld = {
     lt.manaSpring,
     lt.mountain,
   ],
-}
+};
 
 export default {
   priest,

@@ -13,8 +13,8 @@ import locations from '../../data/locations';
 import cities from '../../data/cities';
 import factions from '../../data/factions';
 
-const classArr = Object.values(classes);
-const rewardArr = Object.values(rewardTypes);
+const classArr = _.sortBy(Object.values(classes), 'name');
+const rewardArr = _.sortBy(Object.values(rewardTypes), 'name');
 const locationArr = Object.values(locations);
 const cityArr = Object.values(cities);
 const factionsArr = Object.values(factions);
