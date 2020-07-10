@@ -55,7 +55,7 @@ const darkKnight = {
 };
 
 const swordsman = {
-  name: 'swordsman',
+  name: 'Swordsman',
   parentClass: fighter,
   questBonus: [
     lt.forest,
@@ -164,7 +164,7 @@ const sorcerer = {
 };
 
 const wizard = {
-  name: 'wizard',
+  name: 'Wizard',
   parentClass: sorcerer,
   questBonus: [...sorcerer.questBonus],
 };
