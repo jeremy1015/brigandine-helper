@@ -1,4 +1,5 @@
 import locs from './locations';
+import m from './monsters';
 
 export default {
   alternia: {
@@ -8,6 +9,11 @@ export default {
       locs.twinlilShrine,
       locs.plainsOfBlume,
     ],
+    summons: [
+      m.imp,
+      m.highDog,
+      m.roc,
+    ],
   },
   angela: {
     name: 'Angela',
@@ -16,12 +22,22 @@ export default {
       locs.lanardForest,
       locs.twinlilShrine,
     ],
+    summons: [
+      m.elemental,
+      m.mandrake,
+      m.giantSnake,
+    ],
   },
   angrein: {
     name: 'Angrein',
     locations: [
       locs.tilamValley,
       locs.plainsOfDelza,
+    ],
+    summons: [
+      m.goblin,
+      m.unicorn,
+      m.dragon,
     ],
   },
   anthelnia: {
@@ -31,12 +47,22 @@ export default {
       locs.ruinsOfDapit,
       locs.peaksOfMaydel,
     ],
+    summons: [
+      m.centaur,
+      m.bronzeGolem,
+      m.dragon,
+    ],
   },
   balutza: {
     name: 'Balutza',
     locations: [
       locs.isleOfMartha,
       locs.morrowBay,
+    ],
+    summons: [
+      m.unicorn,
+      m.wyvern,
+      m.demon,
     ],
   },
   belfaram: {
@@ -46,6 +72,11 @@ export default {
       locs.plainsOfGaral,
       locs.mountRhode,
     ],
+    summons: [
+      m.highDog,
+      m.lizardman,
+      m.demon,
+    ],
   },
   cornwern: {
     name: 'Cornwern',
@@ -54,12 +85,25 @@ export default {
       locs.isleOfLennu,
       locs.rumiValley,
     ],
+    summons: [
+      m.highDog,
+      m.lizardman,
+      m.dragon,
+    ],
   },
   dreug: {
     name: 'Dreug',
     locations: [
       locs.silvanLakeside,
       locs.mountRhode,
+    ],
+    summons: [
+      m.ghoul,
+      m.goblin,
+      m.unicorn,
+      m.bronzeGolem,
+      m.dragon,
+      m.demon,
     ],
   },
   drowarn: {
@@ -69,6 +113,11 @@ export default {
       locs.hillsOfMadrow,
       locs.orsonBay,
     ],
+    summons: [
+      m.imp,
+      m.bronzeGolem,
+      m.roc,
+    ],
   },
   ellandol: {
     name: 'Ellandol',
@@ -76,6 +125,11 @@ export default {
       locs.isleOfLennu,
       locs.mountMadroal,
       locs.fortPastous,
+    ],
+    summons: [
+      m.ghoul,
+      m.centaur,
+      m.roc,
     ],
   },
   fupai: {
@@ -85,6 +139,11 @@ export default {
       locs.alzusStrait,
       locs.rumiValley,
     ],
+    summons: [
+      m.centaur,
+      m.gigas,
+      m.mandrake,
+    ],
   },
   galest: {
     name: 'Galest',
@@ -92,6 +151,11 @@ export default {
       locs.enduraWastelands,
       locs.peaksOfMaydel,
       locs.poudValley,
+    ],
+    summons: [
+      m.elemental,
+      m.highDog,
+      m.lizardman,
     ],
   },
   garwellin: {
@@ -101,12 +165,25 @@ export default {
       locs.plainsOfGaral,
       locs.enduraWastelands,
     ],
+    summons: [
+      m.mermaid,
+      m.roc,
+      m.giantSnake,
+    ],
   },
   gharghar: {
     name: 'Gharghar',
     locations: [
       locs.mountMadroal,
       locs.fortPastous,
+    ],
+    summons: [
+      m.ghoul,
+      m.mermaid,
+      m.highDog,
+      m.unicorn,
+      m.dragon,
+      m.demon,
     ],
   },
   glan: {
@@ -116,6 +193,11 @@ export default {
       locs.neilsRuins,
       locs.mastonRange,
     ],
+    summons: [
+      m.highDog,
+      m.bronzeGolem,
+      m.giantSnake,
+    ],
   },
   greensglade: {
     name: 'Greensglade',
@@ -123,6 +205,11 @@ export default {
       locs.mountRhode,
       locs.highlandSnowfield,
       locs.plainsOfGaral,
+    ],
+    summons: [
+      m.centaur,
+      m.bronzeGolem,
+      m.wyvern,
     ],
   },
   harmonia: {
@@ -132,12 +219,22 @@ export default {
       locs.giranAlps,
       locs.plainsOfDelza,
     ],
+    summons: [
+      m.imp,
+      m.mermaid,
+      m.gigas,
+    ],
   },
   ilvanny: {
     name: 'Ilvanny',
     locations: [
       locs.isleOfSeymour,
       locs.isleOfTrembo,
+    ],
+    summons: [
+      m.lizardman,
+      m.unicorn,
+      m.gigas,
     ],
   },
   katchana: {
@@ -147,6 +244,11 @@ export default {
       locs.shamlahFalls,
       locs.hiddenTreasury,
     ],
+    summons: [
+      m.imp,
+      m.wyvern,
+      m.mandrake,
+    ],
   },
   koaloopa: {
     name: 'Koaloopa',
@@ -155,12 +257,25 @@ export default {
       locs.shamlahFalls,
       locs.twinlilShrine,
     ],
+    summons: [
+      m.highDog,
+      m.bronzeGolem,
+      m.wyvern,
+    ],
   },
   lanster: {
     name: 'Lanster',
     locations: [
       locs.aranForest,
       locs.hillsOfCural,
+    ],
+    summons: [
+      m.imp,
+      m.elemental,
+      m.lizardman,
+      m.roc,
+      m.giantSnake,
+      m.angel,
     ],
   },
   lorentz: {
@@ -170,6 +285,11 @@ export default {
       locs.tilamValley,
       locs.shlayneStrait,
     ],
+    summons: [
+      m.unicorn,
+      m.bronzeGolem,
+      m.wyvern,
+    ],
   },
   marmelmo: {
     name: 'Marmelmo',
@@ -177,12 +297,22 @@ export default {
       locs.aranForest,
       locs.hillsOfCural,
     ],
+    summons: [
+      m.centaur,
+      m.wyvern,
+      m.giantSnake,
+    ],
   },
   meraniel: {
     name: 'Meraniel',
     locations: [
       locs.fortPastous,
       locs.ninfusSanctuary,
+    ],
+    summons: [
+      m.imp,
+      m.goblin,
+      m.gigas,
     ],
   },
   mezza: {
@@ -192,6 +322,14 @@ export default {
       locs.ivoryDragonSpring,
       locs.hiddenTreasury,
     ],
+    summons: [
+      m.ghoul,
+      m.elemental,
+      m.unicorn,
+      m.mandrake,
+      m.dragon,
+      m.angel,
+    ],
   },
   milveen: {
     name: 'Milveen',
@@ -199,6 +337,11 @@ export default {
       locs.isleOfTrembo,
       locs.orsonBay,
       locs.seaOfMarianna,
+    ],
+    summons: [
+      m.mermaid,
+      m.centaur,
+      m.roc,
     ],
   },
   minz: {
@@ -208,12 +351,22 @@ export default {
       locs.orsonBay,
       locs.seaOfMarianna,
     ],
+    summons: [
+      m.ghoul,
+      m.goblin,
+      m.gigas,
+    ],
   },
   naridge: {
     name: 'Naridge',
     locations: [
       locs.enduraWastelands,
       locs.ruinsOfDapit,
+    ],
+    summons: [
+      m.mermaid,
+      m.lizardman,
+      m.dragon,
     ],
   },
   norbass: {
@@ -223,12 +376,22 @@ export default {
       locs.peaksOfMaydel,
       locs.neilsRuins,
     ],
+    summons: [
+      m.ghoul,
+      m.mermaid,
+      m.wyvern,
+    ],
   },
   orsol: {
     name: 'Orsol',
     locations: [
       locs.rumiValley,
       locs.plainsOfKarina,
+    ],
+    summons: [
+      m.centaur,
+      m.unicorn,
+      m.mandrake,
     ],
   },
   portside: {
@@ -238,6 +401,11 @@ export default {
       locs.morrowBay,
       locs.ruinsOfNarm,
     ],
+    summons: [
+      m.imp,
+      m.lizardman,
+      m.dragon,
+    ],
   },
   ragrunt: {
     name: 'Ragrunt',
@@ -246,12 +414,25 @@ export default {
       locs.sintoGreatPlains,
       locs.seaOfMarianna,
     ],
+    summons: [
+      m.goblin,
+      m.bronzeGolem,
+      m.giantSnake,
+    ],
   },
   saintGladia: {
     name: 'Saint Gladia',
     locations: [
       locs.isleOfSeymour,
       locs.isleOfMartha,
+    ],
+    summons: [
+      m.imp,
+      m.mermaid,
+      m.lizardman,
+      m.gigas,
+      m.giantSnake,
+      m.demon,
     ],
   },
   saladiel: {
@@ -261,12 +442,22 @@ export default {
       locs.sintoGreatPlains,
       locs.ruinsOfShlay,
     ],
+    summons: [
+      m.elemental,
+      m.unicorn,
+      m.gigas,
+    ],
   },
   sedestoria: {
     name: 'Sedestoria',
     locations: [
       locs.ariaGreatPlains,
       locs.lanardForest,
+    ],
+    summons: [
+      m.unicorn,
+      m.gigas,
+      m.mandrake,
     ],
   },
   shumenly: {
@@ -275,6 +466,11 @@ export default {
       locs.ariaGreatPlains,
       locs.hillsOfMadrow,
       locs.ninfusSanctuary,
+    ],
+    summons: [
+      m.elemental,
+      m.unicorn,
+      m.gigas,
     ],
   },
   tian: {
@@ -285,6 +481,11 @@ export default {
       locs.chimJungle,
       locs.hiddenTreasury,
     ],
+    summons: [
+      m.goblin,
+      m.unicorn,
+      m.roc,
+    ],
   },
   vestillis: {
     name: 'Vestillis',
@@ -292,6 +493,11 @@ export default {
       locs.mastonRange,
       locs.ruinsOfShlay,
       locs.morrowBay,
+    ],
+    summons: [
+      m.mermaid,
+      m.highDog,
+      m.angel,
     ],
   },
   warren: {
@@ -301,6 +507,11 @@ export default {
       locs.highlandSnowfield,
       locs.shlayneStrait,
     ],
+    summons: [
+      m.imp,
+      m.goblin,
+      m.dragon,
+    ],
   },
   zagust: {
     name: 'Zagust',
@@ -308,12 +519,26 @@ export default {
       locs.silvanLakeside,
       locs.neilsRuins,
     ],
+    summons: [
+      m.elemental,
+      m.unicorn,
+      m.wyvern,
+
+    ],
   },
   zai: {
     name: 'Zai',
     locations: [
       locs.ruinsOfDapit,
       locs.theManaSpring,
+    ],
+    summons: [
+      m.ghoul,
+      m.centaur,
+      m.unicorn,
+      m.bronzeGolem,
+      m.roc,
+      m.angel,
     ],
   },
 };
