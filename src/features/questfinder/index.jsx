@@ -17,7 +17,7 @@ const classArr = _.sortBy(Object.values(classes), 'name');
 const rewardArr = _.sortBy(Object.values(rewardTypes), 'name');
 const locationArr = Object.values(locations);
 const cityArr = Object.values(cities);
-const factionsArr = Object.values(factions);
+const factionsArr = _.reject(Object.values(factions), f => f === factions.unaligned);
 
 const Questfinder = () => {
   const [selectedClass, setSelectedClass] = useState([]);
