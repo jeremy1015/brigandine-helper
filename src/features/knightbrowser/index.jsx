@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import {
   Form, Container, FormGroup, Table,
-  Row, Col, UncontrolledAlert,
+  Row, Col,
 } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,9 +10,11 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import knights from '../../data/knights';
 import factions from '../../data/factions';
+import classes from '../../data/classes';
 
 const factionsArr = Object.values(factions);
 const knightsArr = Object.values(knights);
+const classesArr = Object.values(classes);
 
 const pt = { cursor: 'pointer' };
 
@@ -42,6 +44,7 @@ const Knightbrowser = () => {
   const [sortOrder, setSortOrder] = useState('asc');
 
   const [selectedFactions, setSelectedFactions] = useState([]);
+  const [selectedClasses, setSelectedClasses] = useState([]);
 
   const order = (prop) => {
     if (prop === sortProp) {
@@ -52,17 +55,14 @@ const Knightbrowser = () => {
     setSortOrder('asc');
   };
 
-  const filterKnights = () => {
-    const fToUse = _.isEmpty(selectedFactions) ? factionsArr : selectedFactions;
-    return knightsArr.filter(k => fToUse.includes(k.faction));
-  };
+  const filterFaction = toFilter => (_.isEmpty(selectedFactions) ? toFilter : toFilter.filter(k => selectedFactions.includes(k.faction)));
+  const filterClasses = toFilter => (_.isEmpty(selectedClasses) ? toFilter : toFilter.filter(k => selectedClasses.includes(k.startingClass)));
+
+  const filterKnights = () => filterFaction(filterClasses(knightsArr));
 
   const sortKnights = (kArr) => {
-    if (sortProp.name === 'growthRate') {
-      return _.orderBy(kArr, k => (k.growthRate === 'S' ? ' ' : k.growthRate));
-    } 
-    if (sortProp.name === 'growth') {
-      return _.orderBy(kArr, k => (k.growth === 'S' ? ' ' : k.growth));
+    if (sortProp.prop === 'growth') {
+      return _.orderBy(kArr, k => (k.growth === 'S' ? '0' : k.growth), sortOrder);
     }
     return _.orderBy(kArr, k => _.get(k, sortProp.prop), sortOrder);
   };
@@ -70,22 +70,32 @@ const Knightbrowser = () => {
   useEffect(() => {
     if (!selectedFactions || !sortProp) return;
     setDisplayedKnights(sortKnights(filterKnights()));
-  }, [selectedFactions, sortProp, sortOrder]);
+  }, [selectedFactions, selectedClasses, sortProp, sortOrder]);
 
   return (
     <Container fluid className="mt-3 pl-3 pr-3">
       <h3 className="text-center">Knight Browser</h3>
-      <UncontrolledAlert color="info">Not all knight data has been added yet.</UncontrolledAlert>
       <Form>
         <FormGroup row>
-          <Col sm={4}>
+          <Col sm={2}>
             <Typeahead
-              id="class-typeahead"
+              id="faction-typeahead"
               labelKey="name"
               multiple
               options={factionsArr}
               placeholder="Filter by factions..."
               onChange={setSelectedFactions}
+              className="mb-2"
+            />
+          </Col>
+          <Col sm={3}>
+            <Typeahead
+              id="class-typeahead"
+              labelKey="name"
+              multiple
+              options={classesArr}
+              placeholder="Filter by classes..."
+              onChange={setSelectedClasses}
               className="mb-2"
             />
           </Col>
