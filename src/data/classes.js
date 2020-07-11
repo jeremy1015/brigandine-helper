@@ -11,12 +11,9 @@ const bishop = {
   name: 'Bishop',
   parentClass: priest,
   questBonus: [
+    lt.plainsSnowfield,
+    lt.shrineSanctuary,
     lt.hiddenTreasury,
-    lt.holy,
-    lt.isleOfLennu,
-    lt.isleOfMartha,
-    lt.manaSpring,
-    lt.plains,
   ],
 };
 
@@ -35,10 +32,11 @@ const knight = {
   name: 'Knight',
   parentClass: fighter,
   questBonus: [
-    lt.fort,
-    lt.holy,
+    lt.plainsSnowfield,
+    lt.shrineSanctuary,
+    lt.isleOfMartha,
     lt.isleOfLennu,
-    lt.plains,
+    lt.manaSpring,
   ],
 };
 
@@ -51,14 +49,19 @@ const paladin = {
 const darkKnight = {
   name: 'Dark Knight',
   parentClass: knight,
-  questBonus: [...knight.questBonus],
+  questBonus: [
+    lt.ruinsFortWasteland,
+    lt.plainsSnowfield,
+    lt.isleOfSeymour,
+    lt.secretRuins,
+  ],
 };
 
 const swordsman = {
   name: 'Swordsman',
   parentClass: fighter,
   questBonus: [
-    lt.forest,
+    lt.forestJungleWood,
     lt.isleOfTrembo,
     lt.ivoryDragonSpring,
     lt.poudValley,
@@ -80,7 +83,7 @@ const berserker = {
   name: 'Berserker',
   parentClass: barbarian,
   questBonus: [
-    lt.plains,
+    lt.plainsSnowfield,
   ],
 };
 
@@ -88,9 +91,11 @@ const viking = {
   name: 'Viking',
   parentClass: berserker,
   questBonus: [
-    lt.valley,
+    lt.fallsValleyLakeside,
+    lt.straitSeaBay,
     lt.poudValley,
-    lt.saltwater,
+    lt.unmappedIsland,
+    lt.sunkenTreasure,
   ],
 };
 
@@ -103,18 +108,23 @@ const ranger = {
   name: 'Ranger',
   parentClass: thief,
   questBonus: [
-    lt.enduraWastelands,
-    lt.forest,
-    lt.fort,
-    lt.hiddenTreasury,
-    lt.holy,
-    lt.isleOfLennu,
-    lt.isleOfMartha,
+    lt.ruinsFortWasteland,
+    lt.fallsValleyLakeside,
+    lt.mountainRangeHill,
+    lt.alpsPeaks,
+    lt.forestJungleWood,
+    lt.shrineSanctuary,
+    lt.straitSeaBay,
     lt.isleOfTrembo,
-    lt.mountain,
-    lt.ruins,
-    lt.saltwater,
-    lt.theManaSpring,
+    lt.isleOfMartha,
+    lt.isleOfLennu,
+    lt.manaSpring,
+    lt.hiddenTreasury,
+    lt.forgottenCliffs,
+    lt.deepestJungle,
+    lt.secretRuins,
+    lt.unmappedIsland,
+    lt.sunkenTreasure,
   ],
 };
 
@@ -133,8 +143,8 @@ const grappler = {
   name: 'Grappler',
   parentClass: monk,
   questBonus: [
-    lt.hill,
-    lt.mountain,
+    lt.mountainRangeHill,
+    lt.alpsPeaks,
   ],
 };
 
@@ -146,20 +156,17 @@ const champion = {
 
 const mage = {
   name: 'Mage',
-  questBonus: [
-    lt.isleOfSeymour,
-    lt.plains,
-  ],
+  questBonus: [],
 };
 
 const sorcerer = {
   name: 'Sorcerer',
   parentClass: mage,
   questBonus: [
-    lt.fort,
+    lt.ruinsFortWasteland,
+    lt.plainsSnowfield,
     lt.isleOfSeymour,
-    lt.plains,
-    lt.ruins,
+    lt.secretRuins,
   ],
 };
 
@@ -178,9 +185,10 @@ const templeKnight = {
   name: 'Temple Knight',
   parentClass: lancer,
   questBonus: [
-    lt.freshwater,
+    lt.fallsValleyLakeside,
     lt.ivoryDragonSpring,
     lt.poudValley,
+    lt.sunkenTreasure,
   ],
 };
 
@@ -199,10 +207,11 @@ const archer = {
   name: 'Archer',
   parentClass: hunter,
   questBonus: [
-    lt.forest,
+    lt.forestJungleWood,
     lt.isleOfTrembo,
     lt.ivoryDragonSpring,
     lt.poudValley,
+    lt.deepestJungle,
   ],
 };
 
@@ -221,11 +230,11 @@ const minstrel = {
   name: 'Minstrel',
   parentClass: bard,
   questBonus: [
-    lt.valley,
-    lt.forest,
+    lt.forestJungleWood,
     lt.isleOfTrembo,
     lt.ivoryDragonSpring,
     lt.poudValley,
+    lt.deepestJungle,
   ],
 };
 
@@ -244,10 +253,12 @@ const rogue = {
   name: 'Rogue',
   parentClass: dancer,
   questBonus: [
-    lt.fort,
+    lt.ruinsFortWasteland,
+    lt.mountainRangeHill,
+    lt.alpsPeaks,
     lt.isleOfSeymour,
-    lt.ruins,
-    lt.enduraWastelands,
+    lt.forgottenCliffs,
+    lt.secretRuins,
   ],
 };
 
@@ -259,26 +270,23 @@ const assassin = {
 
 const enchantress = {
   name: 'Enchantress',
-  questBonus: [
-    lt.fortPastous,
-    lt.plains,
-  ],
+  questBonus: [],
 };
 
 const sorceress = {
   name: 'Sorceress',
   parentClass: enchantress,
-  questBonus: [...enchantress.questBonus],
+  questBonus: [lt.plainsSnowfield],
 };
 
 const witch = {
   name: 'Witch',
   parentClass: sorceress,
   questBonus: [
-    lt.fort,
+    lt.ruinsFortWasteland,
+    lt.plainsSnowfield,
     lt.isleOfSeymour,
-    lt.plains,
-    lt.ruins,
+    lt.secretRuins,  
   ],
 };
 
@@ -291,12 +299,9 @@ const healer = {
   name: 'Healer',
   parentClass: cleric,
   questBonus: [
+    lt.plainsSnowfield,
+    lt.shrineSanctuary,
     lt.hiddenTreasury,
-    lt.holy,
-    lt.isleOfLennu,
-    lt.isleOfMartha,
-    lt.manaSpring,
-    lt.plains,
   ],
 };
 
@@ -309,11 +314,26 @@ const saint = {
 const heroOfOld = {
   name: 'Hero of Old',
   questBonus: [
-    lt.holy,
-    lt.isleOfLennu,
+    lt.mountainRangeHill,
+    lt.alpsPeaks,
+    lt.shrineSanctuary,
     lt.isleOfMartha,
+    lt.isleOfLennu,
     lt.manaSpring,
-    lt.mountain,
+    lt.forgottenCliffs,
+  ],
+};
+
+const barrett = {
+  name: 'Barrett Rookie (Data Incomplete)',
+  questBonus: [],
+};
+
+const bazoo = {
+  name: 'Bazoo (Data Incomplete)',
+  questBonus: [
+    lt.forestJungleWood,
+    lt.ivoryDragonSpring,
   ],
 };
 
@@ -358,4 +378,6 @@ export default {
   healer,
   saint,
   heroOfOld,
+  barrett,
+  bazoo,
 };
