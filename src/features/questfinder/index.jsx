@@ -24,10 +24,8 @@ const Questfinder = () => {
   const [selectedRewards, setSelectedRewards] = useState([]);
   const [selectedCities, setSelectedCities] = useState([...cityArr]);
   const [queryResults, setQueryResults] = useState([]);
-  const [showOnlyBestResult, setShowOnlyBestResult] = useState(true);
   const [showRewardsColumn, setShowRewardsColumn] = useState(false);
-
-  const toggleShowOnlyBestResult = () => setShowOnlyBestResult(!showOnlyBestResult);
+  const [topLocationScore, setTopLocationScore] = useState(0);
 
   const factionSelectAll = (e, f, shouldAdd) => {
     setSelectedCities((shouldAdd) ? _.uniq([...f.starterCities, ...selectedCities]) : _.reject(selectedCities, c => f.starterCities.includes(c)));
@@ -49,18 +47,20 @@ const Questfinder = () => {
     };
   });
 
-  const rewardsQuery = () => selectedRewards.map((r) => {
-    const bonusLocations = locationArr.filter(l => l.rewards.includes(r));
-    const cityScores = _.reduce(selectedCities, (m, city) => {
-      const score = _.intersection(bonusLocations, city.locations).length;
-      if (score > 0) return [...m, { name: city.name, score }];
-      return m;
+  const rewardsQuery = () => {
+    const locationScores = _(locationArr).map(l => ({
+      location: l,
+      rewards: _.intersection(selectedRewards, l.rewards),
+      score: _.intersection(selectedRewards, l.rewards).length,
+    })).filter(ls => ls.score > 0).value();
+    const results = _.reduce(selectedCities, (m, city) => {
+      const cityLocations = _.filter(locationScores, ls => city.locations.includes(ls.location));
+      const totalScore = _.sumBy(cityLocations, 'score');
+      return [...m, ...(cityLocations.map(cl => ({ ...cl, city: city.name, totalScore })))];
     }, []);
-    return {
-      name: r.name,
-      scores: _.sortBy(cityScores, city => city.score * -1),
-    };
-  });
+    setTopLocationScore((_.maxBy(results, 'score')).score);
+    return _.orderBy(results, ['totalScore', 'city', 'score'], 'desc');
+  };
 
   const fullQuery = () => selectedClass.map((c) => {
     const bonusLocations = locationArr.filter(l => c.questBonus.includes(l.type));
@@ -158,10 +158,6 @@ const Questfinder = () => {
               />
             </Col>
           </Row>
-          <FormGroup check>
-            <Input type="checkbox" onChange={() => toggleShowOnlyBestResult()} checked={showOnlyBestResult} />
-            <Label check onClick={() => toggleShowOnlyBestResult()}><strong>Show only best result</strong></Label>
-          </FormGroup>
         </Col>
         <Col sm={8}>
           <h4>Results</h4>
@@ -171,41 +167,60 @@ const Questfinder = () => {
               <div>
                 <Table>
                   <thead>
-                    <tr>
-                      <td>{_.isEmpty(selectedClass) ? 'Reward' : 'Class'}</td>
-                      <td>City</td>
-                      <td>Score</td>
-                      {showRewardsColumn && <td>Rewards</td>}
-                    </tr>
+                    {_.isEmpty(selectedClass) ? (
+                      <tr>
+                        <td>City</td>
+                        <td>City Score</td>
+                        <td>Location</td>
+                        <td>Loc Score</td>
+                        <td>Rewards</td>
+                      </tr>
+                    ) : (
+                      <tr>
+                        <td>Class</td>
+                        <td>City</td>
+                        <td>Score</td>
+                        {showRewardsColumn && (<td>Rewards</td>)}
+                      </tr>
+                    )}
                   </thead>
                   <tbody>
-                    {queryResults.map(cl => (
-                      <Fragment key={cl.name}>
-                        {showOnlyBestResult && (
-                          <tr>
-                            <td>{cl.name}</td>
-                            <td>{_.isEmpty(cl.scores) ? 'No Result' : cl.scores[0].name}</td>
-                            <td>{_.isEmpty(cl.scores) ? 'No Result' : cl.scores[0].score}</td>
-                            {showRewardsColumn && <td>{_.isEmpty(cl.scores) ? 'No Result' : cl.scores[0].rewards.map(r => r.name).join(', ')}</td>}
-                          </tr>
-                        )}
-                        {(!showOnlyBestResult && _.isEmpty(cl.scores)) && (
-                          <tr>
-                            <td>{cl.name}</td>
-                            <td>No Result</td>
-                            <td>No Result</td>
-                          </tr>
-                        )}
-                        {!showOnlyBestResult && cl.scores.map((cs, i) => (
-                          <tr className={i === 0 ? 'table-success' : ''}>
-                            <td>{cl.name}</td>
-                            <td>{cs.name}</td>
-                            <td>{cs.score}</td>
-                            {showRewardsColumn && <td>{_.isEmpty(cl.scores) ? 'No Result' : cl.scores[i].rewards.map(r => r.name).join(', ')}</td>}
-                          </tr>
+                    {_.isEmpty(selectedClass) && (
+                    <Fragment>
+                      {queryResults.map(qr => (
+                        <tr key={`${qr.city}${qr.location.name}`} className={qr.score === topLocationScore ? 'table-success' : ''}>
+                          <td>{qr.city}</td>
+                          <td>{qr.totalScore}</td>
+                          <td>{qr.location.name}</td>
+                          <td>{qr.score}</td>
+                          <td>{_.map(qr.rewards, 'name').join(', ')}</td>
+                        </tr>
+                      ))}
+                    </Fragment>
+                    )}
+                    {!_.isEmpty(selectedClass) && (
+                      <Fragment>
+                        {queryResults.map(qr => (
+                          <Fragment key={qr.name}>
+                            {_.isEmpty(qr.scores) && (
+                            <tr>
+                              <td>{qr.name}</td>
+                              <td>No Result</td>
+                              <td>No Result</td>
+                            </tr>
+                            )}
+                            {qr.scores.map((cs, i) => (
+                              <tr className={i === 0 ? 'table-success' : ''}>
+                                <td>{qr.name}</td>
+                                <td>{cs.name}</td>
+                                <td>{cs.score}</td>
+                                {showRewardsColumn && <td>{_.isEmpty(qr.scores) ? 'No Result' : qr.scores[i].rewards.map(r => r.name).join(', ')}</td>}
+                              </tr>
+                            ))}
+                          </Fragment>
                         ))}
                       </Fragment>
-                    ))}
+                    )}
                   </tbody>
                 </Table>
               </div>
