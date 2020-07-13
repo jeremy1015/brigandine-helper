@@ -99,7 +99,7 @@ const Questfinder = () => {
       <h3 className="text-center">Quest Location Finder</h3>
       <Row>
         {factionsArr.map(f => (
-          <Col key={f.name} xs="4" className="mb-2">
+          <Col key={f.name} sm={4} className="mb-2">
             <Card>
               <CardHeader>
                 <img src={f.flag} height="32" alt="Flag" />
@@ -112,7 +112,7 @@ const Questfinder = () => {
                 <Form>
                   <Row>
                     {_.sortBy(f.starterCities, 'name').map(c => (
-                      <Col key={c.name} xs={4}>
+                      <Col key={c.name} sm={4}>
                         <FormGroup check>
                           <Input type="checkbox" onChange={event => cityToggle(c)} checked={selectedCities.includes(c)} /> 
                           <Label check onClick={() => cityToggle(c)}>{` ${c.name}`}</Label>
