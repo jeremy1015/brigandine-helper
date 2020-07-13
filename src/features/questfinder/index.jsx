@@ -8,7 +8,7 @@ import {
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import classes from '../../data/classes';
-import rewardTypes from '../../data/reward-types';
+import rewardTypes from '../../data/item-types';
 import locations from '../../data/locations';
 import cities from '../../data/cities';
 import factions from '../../data/factions';
@@ -24,6 +24,7 @@ const Questfinder = () => {
   const [selectedRewards, setSelectedRewards] = useState([]);
   const [selectedCities, setSelectedCities] = useState([...cityArr]);
   const [queryResults, setQueryResults] = useState([]);
+  const [rewardQueryResults, setRewardQueryResults] = useState([]);
   const [showRewardsColumn, setShowRewardsColumn] = useState(false);
   const [topLocationScore, setTopLocationScore] = useState(0);
 
@@ -83,15 +84,18 @@ const Questfinder = () => {
   useEffect(() => {
     if (!selectedClass) return;
     let results = [];
+    let rqResults = [];
     setShowRewardsColumn(false);
     if (!_.isEmpty(selectedClass) && _.isEmpty(selectedRewards)) {
       results = classQuery();
     } else if (isEmpty(selectedClass) && !_.isEmpty(selectedRewards)) {
-      results = rewardsQuery();
+      rqResults = rewardsQuery();
     } else if (!isEmpty(selectedClass) && !_.isEmpty(selectedRewards)) {
       setShowRewardsColumn(true);
       results = fullQuery();
     }
+    console.log(rqResults);
+    setRewardQueryResults(rqResults);
     setQueryResults(results);
   }, [selectedClass, selectedRewards, selectedCities]);
   return (
@@ -162,8 +166,8 @@ const Questfinder = () => {
         <Col sm={8}>
           <h4>Results</h4>
           <div>
-            {_.isEmpty(queryResults) && 'No Results'}
-            {!_.isEmpty(queryResults) && (
+            {_.isEmpty(queryResults) && _.isEmpty(rewardQueryResults) && 'No Results'}
+            {(!_.isEmpty(queryResults) || !_.isEmpty(rewardQueryResults)) && (
               <div>
                 <Table>
                   <thead>
@@ -187,7 +191,7 @@ const Questfinder = () => {
                   <tbody>
                     {_.isEmpty(selectedClass) && (
                     <Fragment>
-                      {queryResults.map(qr => (
+                      {rewardQueryResults.map(qr => (
                         <tr key={`${qr.city}${qr.location.name}`} className={qr.score === topLocationScore ? 'table-success' : ''}>
                           <td>{qr.city}</td>
                           <td>{qr.totalScore}</td>
@@ -209,7 +213,7 @@ const Questfinder = () => {
                               <td>No Result</td>
                             </tr>
                             )}
-                            {qr.scores.map((cs, i) => (
+                            {!_.isEmpty(qr.scores) && qr.scores.map((cs, i) => (
                               <tr className={i === 0 ? 'table-success' : ''}>
                                 <td>{qr.name}</td>
                                 <td>{cs.name}</td>

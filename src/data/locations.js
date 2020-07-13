@@ -1,4 +1,4 @@
-import rt from './reward-types';
+import rt from './item-types';
 import lt from './location-types';
 
 export default {
