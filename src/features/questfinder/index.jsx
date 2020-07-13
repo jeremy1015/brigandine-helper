@@ -12,12 +12,13 @@ import rewardTypes from '../../data/item-types';
 import locations from '../../data/locations';
 import cities from '../../data/cities';
 import factions from '../../data/factions';
+import itemCategories from '../../data/item-categories';
 
 const classArr = _.sortBy(Object.values(classes), 'name');
-const rewardArr = _.sortBy(Object.values(rewardTypes), 'name');
 const locationArr = Object.values(locations);
 const cityArr = Object.values(cities);
 const factionsArr = _.reject(Object.values(factions), f => f === factions.unaligned);
+const rewardsByType = _.groupBy(rewardTypes, item => item.category.name);
 
 const Questfinder = () => {
   const [selectedClass, setSelectedClass] = useState([]);
@@ -34,6 +35,8 @@ const Questfinder = () => {
   };
 
   const cityToggle = c => setSelectedCities(selectedCities.includes(c) ? _.without(selectedCities, c) : [...selectedCities, c]);
+
+  const rewardToggle = r => setSelectedRewards(selectedRewards.includes(r) ? _.without(selectedRewards, r) : [...selectedRewards, r]);
 
   const classQuery = () => selectedClass.map((c) => {
     const bonusLocations = locationArr.filter(l => c.questBonus.includes(l.type));
@@ -94,7 +97,6 @@ const Questfinder = () => {
       setShowRewardsColumn(true);
       results = fullQuery();
     }
-    console.log(rqResults);
     setRewardQueryResults(rqResults);
     setQueryResults(results);
   }, [selectedClass, selectedRewards, selectedCities]);
@@ -132,11 +134,10 @@ const Questfinder = () => {
       </Row>
       <hr />
       <Row>
-        <Col sm="4">
+        <Col sm={4}>
           <Row>
-            <Col sm="12">
+            <Col sm={12}>
               <h4>Selections</h4>
-              Classes
               <Typeahead
                 id="class-typeahead"
                 labelKey="name"
@@ -149,17 +150,24 @@ const Questfinder = () => {
             </Col>
           </Row>
           <Row>
-            <Col sm="12">
-              Rewards
-              <Typeahead
-                id="reward-typeahead"
-                labelKey="name"
-                options={rewardArr}
-                multiple
-                placeholder="Choose some quest objectives..."
-                onChange={setSelectedRewards}
-                className="mb-4"
-              />
+            <Col sm={12}>
+              {_.orderBy(_.map(rewardsByType, (v, k) => (
+                <Card key={k} className="mb-2">
+                  <CardHeader>{ k }</CardHeader>
+                  <div className="pb-1">
+                    {v.map(itemType => (
+                      <Button
+                        className="mt-1 ml-1" 
+                        key={itemType.name} 
+                        color={selectedRewards.includes(itemType) ? 'primary' : 'secondary'} 
+                        onClick={() => rewardToggle(itemType)}
+                      >
+                        <img src={itemType.img} alt={itemType.name} />
+                      </Button>
+                    ))}
+                  </div>
+                </Card>
+              )), c => (_.find(itemCategories, ic => ic.name === c.key).order))}
             </Col>
           </Row>
         </Col>
@@ -169,14 +177,12 @@ const Questfinder = () => {
             {_.isEmpty(queryResults) && _.isEmpty(rewardQueryResults) && 'No Results'}
             {(!_.isEmpty(queryResults) || !_.isEmpty(rewardQueryResults)) && (
               <div>
-                <Table>
+                <Table borderless>
                   <thead>
                     {_.isEmpty(selectedClass) ? (
                       <tr>
                         <td>City</td>
-                        <td>City Score</td>
                         <td>Location</td>
-                        <td>Loc Score</td>
                         <td>Rewards</td>
                       </tr>
                     ) : (
@@ -192,12 +198,10 @@ const Questfinder = () => {
                     {_.isEmpty(selectedClass) && (
                     <Fragment>
                       {rewardQueryResults.map(qr => (
-                        <tr key={`${qr.city}${qr.location.name}`} className={qr.score === topLocationScore ? 'table-success' : ''}>
-                          <td>{qr.city}</td>
-                          <td>{qr.totalScore}</td>
-                          <td>{qr.location.name}</td>
-                          <td>{qr.score}</td>
-                          <td>{_.map(qr.rewards, 'name').join(', ')}</td>
+                        <tr key={`${qr.city}${qr.location.name}`} className={qr.score === topLocationScore ? 'table-primary' : ''}>
+                          <td>{`(${qr.totalScore}) ${qr.city}`}</td>
+                          <td>{`(${qr.score}) ${qr.location.name}`}</td>
+                          <td>{qr.rewards.map(r => <img src={r.img} alt={r.name} />)}</td>
                         </tr>
                       ))}
                     </Fragment>
@@ -214,11 +218,12 @@ const Questfinder = () => {
                             </tr>
                             )}
                             {!_.isEmpty(qr.scores) && qr.scores.map((cs, i) => (
-                              <tr className={i === 0 ? 'table-success' : ''}>
+                              <tr className={i === 0 ? 'table-primary' : ''}>
                                 <td>{qr.name}</td>
                                 <td>{cs.name}</td>
                                 <td>{cs.score}</td>
-                                {showRewardsColumn && <td>{_.isEmpty(qr.scores) ? 'No Result' : qr.scores[i].rewards.map(r => r.name).join(', ')}</td>}
+                                {showRewardsColumn 
+                                  && <td>{_.isEmpty(qr.scores) ? 'No Result' : qr.scores[i].rewards.map(r => <img src={r.img} alt={r.name} />)}</td>}
                               </tr>
                             ))}
                           </Fragment>
