@@ -91,7 +91,6 @@ const viking = {
   name: 'Viking',
   parentClass: berserker,
   questBonus: [
-    lt.fallsValleyLakeside,
     lt.straitSeaBay,
     lt.poudValley,
     lt.unmappedIsland,
