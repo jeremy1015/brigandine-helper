@@ -92,7 +92,6 @@ const viking = {
   parentClass: berserker,
   questBonus: [
     lt.straitSeaBay,
-    lt.poudValley,
     lt.unmappedIsland,
     lt.sunkenTreasure,
   ],
