@@ -36,7 +36,7 @@ const knight = {
     lt.shrineSanctuary,
     lt.isleOfMartha,
     lt.isleOfLennu,
-    lt.manaSpring,
+    lt.theManaSpring,
   ],
 };
 
@@ -116,7 +116,7 @@ const ranger = {
     lt.isleOfTrembo,
     lt.isleOfMartha,
     lt.isleOfLennu,
-    lt.manaSpring,
+    lt.theManaSpring,
     lt.hiddenTreasury,
     lt.forgottenCliffs,
     lt.deepestJungle,
@@ -317,7 +317,7 @@ const heroOfOld = {
     lt.shrineSanctuary,
     lt.isleOfMartha,
     lt.isleOfLennu,
-    lt.manaSpring,
+    lt.theManaSpring,
     lt.forgottenCliffs,
   ],
 };

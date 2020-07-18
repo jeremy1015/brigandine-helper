@@ -52,6 +52,18 @@ const NavigationBar = () => {
               </NavLink>
             </DropdownMenu>
           </UncontrolledDropdown>
+          <UncontrolledDropdown inNavbar nav>
+            <DropdownToggle nav caret>
+              Reference Charts
+            </DropdownToggle>
+            <DropdownMenu>
+              <NavLink tag={Link} to={routes.classchart}>
+                <DropdownItem>
+                  Class Tree
+                </DropdownItem>
+              </NavLink>
+            </DropdownMenu>
+          </UncontrolledDropdown>
           <NavItem>
             <NavLink tag={Link} to={routes.questfinder}>
               Location Questfinder
