@@ -258,7 +258,7 @@ export default {
   Eliza: {
     faction: f.guimoule,
     name: 'Eliza',
-    startingClass: 'Rose Knight',
+    startingClass: c.roseKnight,
     startingLevel: 20,
     startingHP: 625,
     startingMP: 330,
@@ -1138,7 +1138,7 @@ export default {
   Tim: {
     faction: f.gustava,
     name: 'Tim',
-    startingClass: 'Kaiser',
+    startingClass: c.kaiser,
     startingLevel: 18,
     startingHP: 640,
     startingMP: 254,
@@ -2437,7 +2437,7 @@ export default {
   Pick: {
     faction: f.norzaleo,
     name: 'Pick',
-    startingClass: 'Barrett Rookie',
+    startingClass: c.barrett,
     startingLevel: 1,
     startingHP: 309,
     startingMP: 153,
@@ -2457,7 +2457,7 @@ export default {
   Rubino: {
     faction: f.norzaleo,
     name: 'Rubino',
-    startingClass: 'Prince',
+    startingClass: c.prince,
     startingLevel: 5,
     startingHP: 583,
     startingMP: 266,
@@ -3107,7 +3107,7 @@ export default {
   Rudo: {
     faction: f.manaSaleesia,
     name: 'Rudo',
-    startingClass: 'Hierophant',
+    startingClass: c.heirophant,
     startingLevel: 24,
     startingHP: 760,
     startingMP: 294,
@@ -3720,7 +3720,7 @@ export default {
   Talia: {
     faction: f.shinobi,
     name: 'Talia',
-    startingClass: 'Shinobi Leader',
+    startingClass: c.shinobiLeader,
     startingLevel: 8,
     startingHP: 545,
     startingMP: 522,
@@ -3740,7 +3740,7 @@ export default {
   Toby: {
     faction: f.shinobi,
     name: 'Toby',
-    startingClass: 'Bazoo Knight',
+    startingClass: c.bazoo,
     startingLevel: 14,
     startingHP: 530,
     startingMP: 134,
@@ -4264,7 +4264,7 @@ export default {
   Stella: {
     faction: f.mirelva,
     name: 'Stella',
-    startingClass: 'Captain',
+    startingClass: c.captain,
     startingLevel: 15,
     startingHP: 650,
     startingMP: 273,
@@ -4326,7 +4326,7 @@ export default {
   Umimaru: {
     faction: f.mirelva,
     name: 'Umimaru',
-    startingClass: 'Automaton',
+    startingClass: c.automaton,
     startingLevel: 15,
     startingHP: 653,
     startingMP: 235,

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import {
   Form, Container, FormGroup, Table,
-  Row, Col,
+  Row, Col, Dropdown, DropdownToggle, DropdownItem, DropdownMenu,
 } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,16 +25,51 @@ const knightProps = {
   startingLevel: { name: 'Start Level', prop: 'startingLevel' },
   growth: { name: 'Growth', prop: 'growth' },
   growthRate: { name: 'Growth Rate', prop: 'growthRate' },
-  startingHP: { name: 'Start HP', prop: 'startingHP' },
+  hp: { name: 'HP', prop: 'startingHP' },
+  mp: { name: 'MP', prop: 'startingMP' },
   attack: { name: 'ATK', prop: 'attack' },
   defense: { name: 'DEF', prop: 'defense' },
   str: { name: 'STR', prop: 'str' },
   int: { name: 'INT', prop: 'int' },
   agi: { name: 'AGI', prop: 'agi' },
   manaPool: { name: 'Pool', prop: 'manaPool' },
-  mmp30: { name: 'Median Pool 30', prop: 'maxManaPool' },
+  mmp30: { name: 'Pool 30', prop: 'maxManaPool' },
   runeArea: { name: 'Rune Area', prop: 'runeArea' },
 };
+
+const knightPropsCM = {
+  name: { name: 'Name', prop: 'name' },
+  faction: { name: 'Faction', prop: 'faction.name' },
+  startingClass: { name: 'Start Class', prop: 'challengeStats.startingClass.name' },
+  growth: { name: 'Growth', prop: 'challengeStats.growth' },
+  growthRate: { name: 'Growth Rate', prop: 'challengeStats.growthRate' },
+  hp: { name: 'HP', prop: 'challengeStats.startingHP' },
+  mp: { name: 'MP', prop: 'challengeStats.mp' },
+  attack: { name: 'ATK', prop: 'challengeStats.attack' },
+  defense: { name: 'DEF', prop: 'challengeStats.defense' },
+  str: { name: 'STR', prop: 'challengeStats.str' },
+  int: { name: 'INT', prop: 'challengeStats.int' },
+  agi: { name: 'AGI', prop: 'challengeStats.agi' },
+  manaPool: { name: 'Pool', prop: 'challengeStats.manaPool' },
+  mmp30: { name: 'Pool 30', prop: 'maxManaPool' },
+  runeArea: { name: 'Rune Area', prop: 'challengeStats.runeArea' },
+};
+
+const knightPropsCMRaw = { 
+  ...knightPropsCM,
+  hp: { name: 'HP', prop: 'challengeStats.noClass.startingHP' },
+  mp: { name: 'MP', prop: 'challengeStats.noClass.mp' },
+  attack: { name: 'ATK', prop: 'challengeStats.noClass.attack' },
+  str: { name: 'STR', prop: 'challengeStats.noClass.str' },
+  int: { name: 'INT', prop: 'challengeStats.noClass.int' },
+  agi: { name: 'AGI', prop: 'challengeStats.noClass.agi' },
+};
+
+const modes = [
+  { name: 'Regular Game Mode', props: knightProps },
+  { name: 'Challenge Mode', props: knightPropsCM },
+  { name: 'Challenge Mode (Raw Stats)', props: knightPropsCMRaw },
+];
 
 const knightPropsArr = Object.values(knightProps);
 
@@ -42,9 +77,18 @@ const Knightbrowser = () => {
   const [displayedKnights, setDisplayedKnights] = useState([...knightsArr]);
   const [sortProp, setSortProp] = useState(knightPropsArr[0]);
   const [sortOrder, setSortOrder] = useState('asc');
+  const [mode, setMode] = useState(modes[0]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [activePropSet, setActivePropSet] = useState(knightProps);
+  const toggle = () => setDropdownOpen(prevState => !prevState);
 
   const [selectedFactions, setSelectedFactions] = useState([]);
   const [selectedClasses, setSelectedClasses] = useState([]);
+
+  const modeChange = (m) => {
+    setMode(m);
+    setActivePropSet(m.props);
+  };
 
   const order = (prop) => {
     if (prop === sortProp) {
@@ -78,6 +122,14 @@ const Knightbrowser = () => {
       <Form>
         <FormGroup row>
           <Col sm={2}>
+            <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+              <DropdownToggle caret>{mode.name}</DropdownToggle>
+              <DropdownMenu>
+                {modes.map(m => (<DropdownItem key={m.name} onClick={() => modeChange(m)}>{m.name}</DropdownItem>))}
+              </DropdownMenu>
+            </Dropdown>
+          </Col>
+          <Col sm={2}>
             <Typeahead
               id="faction-typeahead"
               labelKey="name"
@@ -106,7 +158,7 @@ const Knightbrowser = () => {
           <Table hover striped responsive>
             <thead>
               <tr className={pt}>
-                {_.map(knightProps, kp => (
+                {_.map(activePropSet, kp => (
                   <th onClick={() => order(kp)}>
                     {kp.name}
                     {sortProp === kp 
@@ -120,7 +172,7 @@ const Knightbrowser = () => {
                 .map(knight => (
                   <Fragment key={knight.name}>
                     <tr>
-                      {_.map(knightProps, kp => (<td>{_.get(knight, kp.prop)}</td>))}
+                      {_.map(activePropSet, kp => (<td>{_.get(knight, kp.prop)}</td>))}
                     </tr>
                   </Fragment>
                 ))}

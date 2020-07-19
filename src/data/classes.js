@@ -335,7 +335,47 @@ const bazoo = {
   ],
 };
 
+const automaton = {
+  name: 'Automaton (Data Incomplete)',
+  questBonus: [],
+};
+
+const roseKnight = {
+  name: 'Rose Knight',
+  questBonus: [],
+};
+
+const kaiser = {
+  name: 'Kaiser',
+  questBonus: [],
+};
+
+const prince = {
+  name: 'Prince',
+  questBonus: [],
+};
+
+const heirophant = {
+  name: 'Hierophant',
+  questBonus: [],
+};
+const shinobiLeader = {
+  name: 'Shinobi Leader',
+  questBonus: [],
+};
+
+const captain = {
+  name: 'Captain',
+  questBonus: [],
+};
+
 export default {
+  roseKnight,
+  kaiser,
+  prince,
+  heirophant,
+  shinobiLeader,
+  captain,
   priest,
   bishop,
   cardinal,
@@ -378,4 +418,5 @@ export default {
   heroOfOld,
   barrett,
   bazoo,
+  automaton,
 };
