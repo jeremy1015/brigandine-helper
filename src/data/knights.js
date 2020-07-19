@@ -20,6 +20,7 @@ import imgAvenir from '../img/knight-avenir.png';
         manaPool: NUMBER,
         runeArea: NUMBER,
         challengeStats: {
+          startingClass: OBJECT REFERENCE,
           startingHP: NUMBER,
           mp: NUMBER,
           attack: NUMBER,
@@ -64,6 +65,7 @@ export default {
     maxManaPool: 260,
     img: imgAvenir,
     challengeStats: {
+      startingClass: c.priest,
       startingHP: 445,
       mp: 255,
       attack: 64,
