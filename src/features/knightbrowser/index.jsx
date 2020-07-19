@@ -12,9 +12,9 @@ import knights from '../../data/knights';
 import factions from '../../data/factions';
 import classes from '../../data/classes';
 
-const factionsArr = Object.values(factions);
+const factionsArr = _.sortBy(Object.values(factions), 'name');
 const knightsArr = Object.values(knights);
-const classesArr = Object.values(classes);
+const classesArr = _.sortBy(Object.values(classes), 'name');
 
 const pt = { cursor: 'pointer' };
 
