@@ -14,20 +14,20 @@ const ClassChart = () => (
     {rootClasses.map(rc => (
       <div key={rc.name} className="pb-2">
         <Row>
-          <Col sm={4}>
+          <Col sm={3}>
             <ClassCard cl={rc} />
           </Col>
         </Row>
         {(childClasses(rc)).map(cc => (
           <Fragment key={cc.name}>
             <Row>
-              <Col sm={{ size: 4, offset: 1 }}>
+              <Col sm={3} className="ml-2">
                 <ClassCard cl={cc} />
               </Col>
             </Row>
             {(childClasses(cc)).map(cc2 => (
               <Row key={cc2.name}>
-                <Col sm={{ size: 4, offset: 2 }}>
+                <Col sm={3} className="ml-4">
                   <ClassCard cl={cc2} />
                 </Col>
               </Row>
